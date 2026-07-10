@@ -216,3 +216,34 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# =============================================================================
+# ML / LLM Security (course specific)
+# =============================================================================
+# Data artifacts
+*.csv
+*.tsv
+*.parquet
+*.h5
+*.pkl
+*.joblib
+data/raw/
+data/interim/
+
+# Model artifacts
+*.pth
+*.ckpt
+*.safetensors
+outputs/models/
+outputs/logs/
+
+# Secrets & credenciais (NUNCA versionar)
+.env.*
+*.pem
+*.key
+secrets/
+
+# Relatórios de red teaming / scans (podem conter payloads sensíveis)
+garak_runs/
+pyrit_results/
+*.sarif

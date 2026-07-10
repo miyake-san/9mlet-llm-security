@@ -1,0 +1,86 @@
+[project]
+name = "9mlet-llm-security"
+version = "0.1.0"
+description = "Materiais da disciplina 'Segurança, Conformidade e Guardrails para LLMs' — Pós-graduação/mestrado em Engenharia de Machine Learning."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Diogo Miyake" }]
+keywords = ["llm", "security", "guardrails", "llmops", "compliance", "responsible-ai"]
+
+# Dependências de runtime (agrupadas por aula). Fonte única de verdade — gerenciada pelo uv.
+dependencies = [
+    # --- Core ---
+    "pydantic>=2.7.0",
+    # --- Dados / utilitários ---
+    "numpy>=1.26.0",
+    "pandas>=2.2.0",
+    "matplotlib>=3.9.0",
+    "seaborn>=0.13.0",
+    # --- Modelo & NLP (transversal) ---
+    "transformers>=4.44.0",
+    "torch>=2.4.0",
+    "spacy>=3.7.0",
+    "nltk>=3.9.0",
+    "openai>=1.40.0",
+    "azure-ai-inference>=1.0.0b4",
+    # --- Aula 1 — Ameaças e Vulnerabilidades ---
+    "garak>=0.9.0",
+    "pyrit>=0.5.0",
+    # --- Aula 2 — Guardrails e Políticas ---
+    "nemoguardrails>=0.9.0",
+    "guardrails-ai>=0.5.0",
+    # --- Aula 3 — Proteção de Dados e Isolamento ---
+    "presidio-analyzer>=2.2.0",
+    "presidio-anonymizer>=2.2.0",
+    "mcp>=1.0.0",
+    "azure-identity>=1.17.0",
+    "azure-keyvault-secrets>=4.8.0",
+    # --- Aula 4 — Testes de Segurança e Auditoria (promptfoo via npm) ---
+    "azure-monitor-opentelemetry>=1.6.0",
+    # --- Aula 5 — Conformidade (LGPD/GDPR/EU AI Act) ---
+    "azure-monitor-query>=1.4.0",
+    # --- Aula 6 — Governança e Monitoramento (LLMOps) ---
+    "evidently>=0.4.30",
+    "langfuse>=2.40.0",
+    "opentelemetry-api>=1.25.0",
+    "opentelemetry-sdk>=1.25.0",
+    # --- Aula 7 — Ética, Viés e Validação ---
+    "fairlearn>=0.10.0",
+    "aif360>=0.6.1",
+    "ragas>=0.1.10",
+    "azure-ai-evaluation>=1.0.0",
+    # --- Aula 8 — Governança de IA e Produção ---
+    "azure-ai-projects>=1.0.0b3",
+    "cyclonedx-bom>=4.0.0",
+]
+
+[project.urls]
+Repository = "https://github.com/miyake-san/9mlet-llm-security"
+
+# Ferramentas de desenvolvimento (PEP 735). Instaladas por padrão no `uv sync`.
+[dependency-groups]
+dev = [
+    "ruff>=0.5.0",
+    "pytest>=8.2.0",
+    "taskipy>=1.13.0",
+    "jupyterlab>=4.2.0",
+]
+
+[tool.uv]
+# Coleção de materiais didáticos — não é um pacote instalável.
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+# Atalhos de tarefa (execute com: uv run task <nome>)
+[tool.taskipy.tasks]
+test = "pytest"
+lint = "ruff check ."
+fmt = "ruff format ."
+lab = "jupyter lab"
