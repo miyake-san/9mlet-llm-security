@@ -1,0 +1,69 @@
+# ==========================================================================
+# thresholds.yaml — Parâmetros de conformidade (Aula 05)
+#
+# Materializa decisões de engenharia do Doc 04: minimização de PII (§2 — LGPD
+# art. 6, V), pesos de risco para o cálculo R = Σ Pj·Ij (§7) e política de
+# retenção do registro de tratamento (§4 — art. 37). Montado nos serviços em
+# modo somente-leitura e ajustável SEM rebuild.
+# ==========================================================================
+
+# --- Minimização de PII no prompt (Doc 04, §2 — necessidade / art. 6, V) ------
+# "O dado mais seguro é aquele que não existe": removemos PII do prompt antes de
+# enviar ao modelo. min_score equilibra FN/FP (mesmo raciocínio da Aula 02/03).
+pii:
+  language: pt
+  min_score: 0.5
+  # Entidades minimizadas por padrão (o detector BR determinístico é o fallback
+  # offline; Presidio é o caminho de produção — vídeo 3).
+  entities:
+    - BR_CPF
+    - BR_CNPJ
+    - BR_RG
+    - BR_CEP
+    - BR_ACCOUNT
+    - EMAIL_ADDRESS
+    - PHONE_NUMBER
+    - CREDIT_CARD
+    - PERSON
+  # Operador por entidade: redact (remove) | mask (mascara) | hash (pseudonimiza).
+  operators:
+    BR_CPF: mask
+    BR_CNPJ: mask
+    BR_ACCOUNT: mask
+    CREDIT_CARD: mask
+    BR_RG: mask
+    BR_CEP: mask
+    EMAIL_ADDRESS: mask
+    PHONE_NUMBER: mask
+    PERSON: redact
+
+# --- Pesos de risco para a DPIA (Doc 04, §7 — R = Σ Pj·Ij) --------------------
+# Impacto ponderado por gravidade jurídica + reputacional (0-1). Cenários de alto
+# P·I exigem salvaguardas reforçadas; risco residual baixo é aceito e DOCUMENTADO.
+risk:
+  # Faixas de decisão sobre o risco agregado normalizado (0-1).
+  thresholds:
+    accept_below: 0.15        # risco residual aceitável (documentar)
+    mitigate_below: 0.45      # requer mitigação adicional
+    # acima de mitigate_below -> risco ALTO: revisão do DPO obrigatória
+  # Impacto por categoria de dano (gravidade sob LGPD/GDPR).
+  impact_weights:
+    pii_leak: 0.9             # vazamento de PII (art. 46; multa + dano reputacional)
+    sensitive_data: 1.0       # dado sensível (art. 11) — impacto máximo
+    automated_decision: 0.8   # decisão automatizada sem revisão (GDPR art. 22)
+    unlawful_basis: 0.85      # tratamento sem base legal (art. 7) — invalida tudo
+    retention_excess: 0.4     # retenção além do necessário (art. 6, III)
+    cross_border: 0.6         # transferência internacional (Schrems II)
+
+# --- Retenção do registro de tratamento (Doc 04, §4 — art. 37 / GDPR art. 30) -
+retention:
+  # Padrão bancário: 5 anos para operações financeiras; ajustável por finalidade
+  # em configs/treatment_policies.yaml. Retenção além do necessário é NÃO conforme.
+  default_days: 1825
+  # PII em log TAMBÉM é PII: minimizar antes de registrar (Doc 04, §4 — só metadados).
+  log_only_metadata: true
+
+# --- EU AI Act: transparência de risco limitado (Doc 04, §6-7) ----------------
+transparency:
+  # Chatbots de risco limitado DEVEM informar que são IA (Regulation EU 2024/1689).
+  ai_disclosure: "Você está conversando com o Aurora Assist, uma inteligência artificial do Banco Aurora."

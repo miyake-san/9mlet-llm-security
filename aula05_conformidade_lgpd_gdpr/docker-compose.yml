@@ -1,0 +1,261 @@
+# ==========================================================================
+# docker-compose.yml — Lab da Aula 05 (vídeo 4)
+# Sobe o pipeline LGPD/GDPR-compliant com um comando:  docker compose up -d
+#
+# Pipeline de conformidade (Doc 04, Figura 1), da esquerda para a direita:
+#   consentimento (consent-service+postgres) -> minimização (presidio) ->
+#   registro de tratamento WORM (rag-api) -> purga seletiva (purge-worker+qdrant)
+#   -> residência de dados (DATA_RESIDENCY_REGION).
+#
+# Contêineres endurecidos (Privacy by Design também na infra — GDPR art. 25).
+# Se sua plataforma não suportar seccomp/read_only (ex.: alguns setups Windows),
+# comente as linhas indicadas.
+# ==========================================================================
+name: aula05-conformidade
+
+services:
+  # --- LLM local, offline-first ------------------------------------------
+  ollama:
+    image: ollama/ollama:0.3.14
+    container_name: aula05-ollama
+    volumes:
+      - ollama-models:/root/.ollama
+    ports:
+      - "11434:11434"
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- Postgres: store versionado do consentimento (art. 7/8 LGPD) -------
+  postgres:
+    image: postgres:16.4-bookworm
+    container_name: aula05-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-aurora_consent}
+      POSTGRES_USER: ${POSTGRES_USER:-aurora}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-aurora-dev-only}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-aurora} -d ${POSTGRES_DB:-aurora_consent}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- Presidio: minimização de dados (LGPD art. 6, V — necessidade) -----
+  # Imagens oficiais Microsoft. Se ausentes, a rag-api cai no detector BR
+  # determinístico (offline) automaticamente.
+  presidio-analyzer:
+    image: mcr.microsoft.com/presidio-analyzer:2.2.355
+    container_name: aula05-presidio-analyzer
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:3000/health', timeout=3).status==200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks: [aurora]
+
+  presidio-anonymizer:
+    image: mcr.microsoft.com/presidio-anonymizer:2.2.355
+    container_name: aula05-presidio-anonymizer
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:3000/health', timeout=3).status==200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- Vector store: alvo da purga seletiva (direito ao esquecimento) -----
+  # Análogo didático offline ao Azure AI Search (Doc 04, §10, Snippet 3).
+  qdrant:
+    image: qdrant/qdrant:v1.11.3
+    container_name: aula05-qdrant
+    volumes:
+      - qdrant-data:/qdrant/storage
+    ports:
+      - "6333:6333"
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/127.0.0.1/6333' 2>/dev/null || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- consent-service: consentimento granular e versionado --------------
+  consent-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: aurora-assist-compliant:aula05
+    container_name: aula05-consent-service
+    command: ["uvicorn", "app.consent:app", "--host", "0.0.0.0", "--port", "8010"]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      CONSENT_STORE: ${CONSENT_STORE:-postgres}
+      CONSENT_TERMS_VERSION: ${CONSENT_TERMS_VERSION:-2026-06-v3}
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "5432"
+      POSTGRES_DB: ${POSTGRES_DB:-aurora_consent}
+      POSTGRES_USER: ${POSTGRES_USER:-aurora}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-aurora-dev-only}
+      HEALTH_PORT: "8010"
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8010:8010"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # ---- Hardening ----
+    user: "10001:10001"
+    read_only: true                       # comente se sua plataforma reclamar
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+      - seccomp=./configs/seccomp.json    # comente para usar o perfil padrão
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8010/health', timeout=3).status==200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- Aurora Assist v2.5: rag-api COMPLIANT -----------------------------
+  # Verifica consentimento -> minimiza PII -> registra tratamento (WORM) ->
+  # aplica transparência EU AI Act -> recusa decisão de crédito automatizada.
+  rag-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: aurora-assist-compliant:aula05
+    container_name: aula05-rag-api
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      LLM_BACKEND: ${LLM_BACKEND:-groq}
+      GROQ_BASE_URL: ${GROQ_BASE_URL:-https://api.groq.com/openai/v1}
+      GROQ_MODEL: ${GROQ_MODEL:-openai/gpt-oss-20b}
+      GROQ_MIN_INTERVAL_SECONDS: ${GROQ_MIN_INTERVAL_SECONDS:-1}
+      OLLAMA_BASE_URL: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.1:8b}
+      MODEL_VERSION: ${MODEL_VERSION:-aurora-assist-2.5.0}
+      AI_ACT_RISK_TIER: ${AI_ACT_RISK_TIER:-limited}
+      AI_DISCLOSURE_ENABLED: ${AI_DISCLOSURE_ENABLED:-true}
+      REFUSE_AUTOMATED_CREDIT_DECISION: ${REFUSE_AUTOMATED_CREDIT_DECISION:-true}
+      MINIMIZE_PII: ${MINIMIZE_PII:-true}
+      ENFORCE_CONSENT: ${ENFORCE_CONSENT:-true}
+      DATA_RESIDENCY_REGION: ${DATA_RESIDENCY_REGION:-brazil-south}
+      CONSENT_SERVICE_URL: http://consent-service:8010
+      TREATMENT_LOG_PATH: /tmp/treatment_chain.jsonl
+      VECTOR_STORE: ${VECTOR_STORE:-qdrant}
+      QDRANT_URL: http://qdrant:6333
+      QDRANT_COLLECTION: ${QDRANT_COLLECTION:-aurora_rag}
+      PRESIDIO_ANALYZER_URL: http://presidio-analyzer:3000
+      PRESIDIO_ANONYMIZER_URL: http://presidio-anonymizer:3000
+      HEALTH_PORT: "8000"
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8000:8000"
+    depends_on:
+      ollama:
+        condition: service_healthy
+      consent-service:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+    # ---- Hardening do contêiner ----
+    user: "10001:10001"
+    read_only: true                       # comente se sua plataforma reclamar
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+      - seccomp=./configs/seccomp.json    # comente para usar o perfil padrão
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    volumes:
+      - ./data:/app/data:ro               # datasets sintéticos (somente leitura)
+      - ./reports:/app/reports:rw
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3).status==200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- purge-worker: operacionaliza o direito ao esquecimento ------------
+  # Faz polling das solicitações de exclusão (DSR) e executa a PURGA SELETIVA
+  # de vetores do titular no Qdrant (Doc 04, §10, Snippet 3).
+  purge-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: aurora-assist-compliant:aula05
+    container_name: aula05-purge-worker
+    command: ["python", "-m", "app.purge", "--serve", "--interval", "20"]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      CONSENT_SERVICE_URL: http://consent-service:8010
+      VECTOR_STORE: qdrant
+      QDRANT_URL: http://qdrant:6333
+      QDRANT_COLLECTION: ${QDRANT_COLLECTION:-aurora_rag}
+      TREATMENT_LOG_PATH: /tmp/treatment_chain.jsonl
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    depends_on:
+      consent-service:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+    # ---- Hardening (worker sem porta exposta) ----
+    user: "10001:10001"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+      - seccomp=./configs/seccomp.json
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+    volumes:
+      - ./reports:/app/reports:rw
+    restart: unless-stopped
+    networks: [aurora]
+
+volumes:
+  ollama-models:
+  postgres-data:
+  qdrant-data:
+
+networks:
+  aurora:
+    driver: bridge

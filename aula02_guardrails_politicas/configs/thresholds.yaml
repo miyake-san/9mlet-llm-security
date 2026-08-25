@@ -1,0 +1,69 @@
+# ==========================================================================
+# thresholds.yaml — Política de bloqueio por criticidade de fluxo (Aula 02)
+#
+# Materializa a Tabela 2 do Doc 04 ("Estratégia de camadas por criticidade")
+# e a Figura 3 ("Classificação com severidade graduada"): o MESMO conteúdo
+# pode receber tratamentos distintos conforme o fluxo. Segurança é DECISÃO DE
+# ENGENHARIA orientada a risco, não slogan (Sutton, 2025).
+#
+# Este arquivo é montado no gateway (read-only) e pode ser ajustado SEM rebuild.
+# ==========================================================================
+
+# Severidade do Azure AI Content Safety varia de 0 a 6 (Microsoft, 2024a).
+# `block_at` = severidade mínima que causa BLOQUEIO. `review_at` = sinaliza p/ revisão.
+content_safety:
+  categories: [hate, sexual, violence, self_harm]
+  # Limite global (fallback) — sobrescrito por `flows` abaixo.
+  block_at: 4
+  review_at: 2
+
+# Perfis de fluxo por criticidade. Fluxos transacionais priorizam REVOCAÇÃO alta
+# (menos falsos negativos); fluxos informativos priorizam PRECISÃO/UX (menos
+# falsos positivos). Ver Doc 04, seção 8 (assimetria FP × FN em bancos).
+flows:
+  faq:                          # dúvidas genéricas (horário de agência, etc.)
+    description: "Fluxo informativo — prioriza experiência; tolera risco baixo."
+    content_safety_block_at: 5
+    require_behavior_policy: true
+    require_llama_guard: false
+    require_output_schema: false
+    require_output_pii: true
+    jailbreak_block: true
+
+  authenticated:                # cliente autenticado consultando dados próprios
+    description: "Fluxo autenticado — acrescenta Llama Guard e validação de saída."
+    content_safety_block_at: 4
+    require_behavior_policy: true
+    require_llama_guard: true
+    require_output_schema: true
+    require_output_pii: true
+    jailbreak_block: true
+
+  transactional:                # TED/PIX/alteração cadastral — risco máximo
+    description: "Fluxo transacional — revocação alta; bloqueia agressivamente."
+    content_safety_block_at: 2
+    require_behavior_policy: true
+    require_llama_guard: true
+    require_output_schema: true
+    require_output_pii: true
+    jailbreak_block: true
+
+# Detecção de jailbreak / prompt injection (guardrail de ENTRADA).
+# score 0.0-1.0 agregado por heurísticas + Llama Guard. Doc 04, seções 1-2.
+input_guardrail:
+  jailbreak_block_score: 0.5    # >= bloqueia
+  injection_block_score: 0.5
+
+# Entidades de PII bloqueadas na SAÍDA (guardrail de saída — Doc 04, Snippet 2).
+# Contexto BR: além de EMAIL/PHONE, CPF/CNPJ/RG/CEP/CARD.
+output_guardrail:
+  block_pii_entities:
+    - CPF
+    - CNPJ
+    - RG
+    - CEP
+    - CREDIT_CARD
+    - EMAIL_ADDRESS
+    - PHONE_NUMBER
+  redact_token: "[REDACTED_{entity}]"
+  max_output_chars: 4000

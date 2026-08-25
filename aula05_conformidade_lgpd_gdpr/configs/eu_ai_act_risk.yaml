@@ -1,0 +1,68 @@
+# ==========================================================================
+# eu_ai_act_risk.yaml — Árvore de decisão de classificação de risco (Aula 05)
+#
+# Materializa a "pirâmide de risco" do EU AI Act (Regulation EU 2024/1689) e a
+# bifurcação central do Doc 04, §7: enquanto o Aurora Assist apenas INFORMA e
+# consulta saldo, é RISCO LIMITADO; se passa a DECIDIR concessão de crédito,
+# migra para ALTO RISCO, herdando obrigações pesadas. As escolhas de produto
+# definem o fardo regulatório.
+#
+# Consumido por src/security/dpia.py (classify_ai_system) e pelo notebook 02.
+# ==========================================================================
+
+# Níveis da pirâmide (do topo para a base) — Doc 04, §6.
+tiers:
+  unacceptable:
+    label: "Risco inaceitável"
+    description: "Proibido (ex.: social scoring governamental, manipulação subliminar)."
+    obligations: ["proibicao_total"]
+  high:
+    label: "Alto risco"
+    description: "Crédito, saúde, recrutamento, biometria. Requisitos rigorosos."
+    obligations:
+      - "sistema_gestao_de_risco"
+      - "documentacao_tecnica_extensa"
+      - "supervisao_humana_significativa"
+      - "registro_automatico_de_logs"
+      - "avaliacao_de_conformidade"
+      - "dpia_obrigatoria"
+  limited:
+    label: "Risco limitado"
+    description: "Chatbots e assistentes informativos. Obrigação de transparência."
+    obligations:
+      - "transparencia_ao_usuario"     # informar que é IA
+      - "documentacao_minima"
+  minimal:
+    label: "Risco mínimo"
+    description: "Uso livre (filtros de spam, jogos). Sem obrigações específicas."
+    obligations: []
+
+# Regras de classificação, avaliadas EM ORDEM (primeira que casar vence).
+# Cada regra testa "capabilities" declaradas do sistema (ver dpia.py / notebook).
+rules:
+  - id: R1
+    tier: unacceptable
+    when_any: ["social_scoring", "subliminal_manipulation", "realtime_biometric_id_public"]
+    rationale: "Prática vedada pelo Título II do EU AI Act."
+  - id: R2
+    tier: high
+    when_any: ["credit_decision", "credit_scoring", "hiring_decision", "health_diagnosis"]
+    rationale: "Anexo III: sistemas que decidem acesso a serviços essenciais."
+  - id: R3
+    tier: limited
+    when_any: ["conversational", "chatbot", "informational_assistant"]
+    rationale: "Art. 50: interação direta com pessoas exige transparência."
+  - id: R4
+    tier: minimal
+    when_any: ["spam_filter", "recommendation_low_stakes"]
+    rationale: "Fora do escopo de alto/limitado risco."
+
+# Fallback quando nenhuma regra casa (postura conservadora, mas sem inflar).
+default_tier: limited
+
+# Capabilities do Aurora Assist no cenário-base do Doc 04 (§7): apenas informa.
+# Trocar para incluir "credit_decision" demonstra a migração para alto risco.
+aurora_assist_capabilities:
+  - conversational
+  - informational_assistant
+  - balance_inquiry

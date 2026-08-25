@@ -1,0 +1,36 @@
+# ==========================================================================
+# thresholds.yaml — Política do DEPLOY GATE DevSecOps (Aula 08, Doc 04, §§6-9).
+#
+# Limiares do "gate de segurança" que nenhuma versão do agente ultrapassa sem
+# aprovação (Doc 04, §9). Materializa o `should_rollback` (Snippet 2 do Doc 04) e
+# os pré-requisitos de promoção (AIBOM completo + cobertura de governança). Os
+# gatilhos numéricos de rollback vivem em `slo.yaml` (SLOs `critical`); aqui ficam
+# os valores literais do Snippet 2 e os requisitos de governança da promoção.
+# ==========================================================================
+
+# Snippet 2 do Doc 04 (§6) — gatilho mínimo de rollback por qualidade/safety.
+rollback_snippet2:
+  min_groundedness: 0.85
+  max_jailbreak: 0.02
+  max_drift: 0.10
+
+# Pré-requisitos de promoção (governança como código — Doc 04, §§8-10).
+promotion_requirements:
+  require_aibom_complete: true          # AIBOM com modelo base + datasets + deps (§8)
+  require_governance_coverage: true     # 4 funções do NIST AI RMF cobertas (§2)
+  require_no_critical_slo_violation: true
+
+# Promoção canary progressiva (Figura 3 do Doc 04, §6).
+canary:
+  stages_percent: [5, 25, 50, 100]
+  metric_window: "5m"
+
+# Gates do pipeline DevSecOps (Doc 04, §9) — shift-left.
+devsecops_gates:
+  - lint                # ruff
+  - unit_tests          # pytest (guardrails, MCP, gate, regressão)
+  - red_team            # PyRIT/Garak (grupo `security`) — offline mede jailbreak_rate
+  - dependency_scan     # supply chain (LLM05)
+  - secret_scan         # impedir vazamento de credenciais
+  - aibom               # CycloneDX ML-BOM (§8)
+  - deploy_gate         # should_rollback + AIBOM + governança

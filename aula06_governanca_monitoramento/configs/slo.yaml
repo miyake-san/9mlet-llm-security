@@ -1,0 +1,89 @@
+# ==========================================================================
+# slo.yaml — SLIs, SLOs e Data SLOs do Aurora Assist (Aula 06)
+#
+# Traduz a Tabela 3 do Doc 04 (§"SLIs, SLOs e Data SLOs") em contratos numéricos
+# verificáveis (Beyer et al., 2016). Um SLI é a grandeza medida; o SLO é a meta;
+# o error budget é a margem de falha tolerada antes de ação corretiva obrigatória.
+# Data SLOs estendem a lógica à QUALIDADE DOS DADOS (frescor, ausência de PII).
+#
+# comparator: lte (menor-ou-igual à meta é BOM) | gte (maior-ou-igual é BOM).
+# ==========================================================================
+
+slos:
+  # --- Confiabilidade / experiência -----------------------------------------
+  - id: latency_p95
+    name: "Latência P95 por request"
+    kind: slo
+    sli: latency_ms_p95
+    source: "spans gen_ai.* (duração)"
+    window: "rolling 1h"
+    objective: 2000
+    unit: ms
+    comparator: lte
+    error_budget: 0.05
+    action: "Investigar step de retrieval e model routing; escalar se persistir."
+
+  # --- Qualidade (fundamentação) --------------------------------------------
+  - id: groundedness_regulated
+    name: "Groundedness em perguntas reguladas"
+    kind: slo
+    sli: groundedness_ratio_regulated
+    source: "proxy léxico resposta<->contexto RAG"
+    window: "rolling 1d"
+    objective: 0.95
+    unit: ratio
+    comparator: gte
+    error_budget: 0.05
+    action: "Revisar base de conhecimento; abrir incidente se cair com drift."
+
+  # --- Segurança (tendência de bloqueio de jailbreak) -----------------------
+  - id: jailbreak_block_rate
+    name: "Taxa de bloqueio de jailbreak"
+    kind: slo
+    sli: jailbreak_block_rate
+    source: "guardrail decisions (Aula 02) instrumentadas"
+    window: "rolling 1d"
+    objective: 0.98
+    unit: ratio
+    comparator: gte
+    error_budget: 0.02
+    action: "Queda na tendência => revisar guardrails e rodar red team (Aula 04)."
+
+  # --- Custo (token economics) ----------------------------------------------
+  - id: cost_per_conversation
+    name: "Custo médio por conversa"
+    kind: slo
+    sli: cost_usd_avg
+    source: "spans gen_ai.usage.* x tabela de preços"
+    window: "rolling 1d"
+    objective: 0.05
+    unit: usd
+    comparator: lte
+    error_budget: 0.10
+    action: "Ativar caching semântico / model routing / batching."
+
+  # --- Data SLO: frescor da base de conhecimento ----------------------------
+  - id: knowledge_freshness
+    name: "Frescor documental (Data SLO)"
+    kind: data_slo
+    sli: knowledge_age_seconds
+    source: "timestamp de reindexação da base RAG"
+    window: "contínuo"
+    objective: 43200        # 12 horas
+    unit: s
+    comparator: lte
+    error_budget: 0.0
+    action: "Buffer interno: alerta ANTES de estourar o SLA externo -> reindexar."
+
+  # --- Data SLO: vazamento de PII (conecta Aula 03 + Aula 05) ---------------
+  - id: pii_leak_rate
+    name: "Vazamento de PII nas respostas (Data SLO de segurança)"
+    kind: data_slo
+    sli: pii_leak_rate
+    source: "detector determinístico de PII sobre as respostas amostradas"
+    window: "rolling 1d"
+    objective: 0.01         # <= 1% (Doc 04, Snippet 4)
+    unit: ratio
+    comparator: lte
+    error_budget: 0.0
+    action: "Violação => reforçar minimização (Aula 03) e abrir incidente (Aula 05)."

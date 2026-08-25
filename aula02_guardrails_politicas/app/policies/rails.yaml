@@ -1,0 +1,50 @@
+# =====================================================================
+# rails.yaml — Rail Spec (Guardrails AI) do guardrail de SAÍDA
+# Doc 04, seção 6 e Snippet 2: a saída do LLM é um CONTRATO de integração.
+#
+# Descreve, de forma declarativa, o contrato de resposta e os validadores. É
+# consumida pelo Guardrails AI (produção, grupo `frameworks`) e serve de
+# especificação para a validação offline em src/security/output_guardrails.py.
+# =====================================================================
+
+version: "0.5"
+
+# Contrato de saída para consulta de saldo (exemplo da seção 6 do Doc 04).
+output_schema:
+  type: object
+  required: [produto, moeda, valor, data_consulta, mensagem]
+  properties:
+    produto:
+      type: string
+      description: "Nome do produto/conta consultado."
+    moeda:
+      type: string
+      enum: [BRL]
+      description: "Moeda — apenas BRL é válido no Aurora Assist."
+    valor:
+      type: number
+      description: "Valor numérico do saldo."
+    data_consulta:
+      type: string
+      format: date
+    mensagem:
+      type: string
+
+# Validadores aplicados a QUALQUER resposta (inclusive texto livre).
+validators:
+  - id: detect_pii
+    on_fail: fix          # redige a PII em vez de bloquear (Snippet 2)
+    entities:
+      - CPF
+      - CNPJ
+      - RG
+      - CEP
+      - CREDIT_CARD
+      - EMAIL_ADDRESS
+      - PHONE_NUMBER
+  - id: toxicity
+    on_fail: block
+    threshold: 0.5
+  - id: max_length
+    on_fail: block
+    max_chars: 4000

@@ -1,0 +1,107 @@
+[project]
+name = "aula03-protecao-dados-isolamento"
+version = "0.1.0"
+description = "Aula 03 — Proteção de Dados e Isolamento de Ferramentas em LLMs (Zero Trust, PII/Presidio, tokenização reversível, MCP isolado, Confidential Computing)."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Diogo Miyake" }]
+keywords = [
+    "llm-security",
+    "zero-trust",
+    "pii",
+    "presidio",
+    "data-protection",
+    "mcp",
+    "tool-isolation",
+    "confidential-computing",
+]
+
+# Dependências de runtime da APLICAÇÃO (app/ + src/). Mantidas LEVES e offline-first:
+# a detecção/anonimização de PII e o isolamento de ferramentas funcionam SEM Presidio
+# (implementações determinísticas em Python: regex + dígito verificador + capability
+# tokens), de modo que `uv sync` + `uv run task test` rodem sem baixar spaCy/torch.
+# O caminho de PRODUÇÃO (Microsoft Presidio + Azure Key Vault + MCP SDK) fica em grupos
+# opcionais (ver [dependency-groups]) — Doc 04, seções 5-7 e 10-11.
+dependencies = [
+    "fastapi>=0.115.0,<0.116.0",
+    "uvicorn[standard]>=0.30.0,<0.35.0",
+    "httpx>=0.27.0,<0.28.0",
+    "pydantic>=2.7.0,<3.0.0",
+    "pydantic-settings>=2.4.0,<3.0.0",
+    "pyyaml>=6.0.0,<7.0.0",
+    "faker>=26.0.0,<31.0.0",
+    "rich>=13.7.0,<14.0.0",
+]
+
+[project.urls]
+Repository = "https://github.com/miyake-san/9mlet-llm-security"
+
+# Grupos de dependências (PEP 735). Apenas `dev` é instalado por padrão no `uv sync`.
+[dependency-groups]
+dev = [
+    "pytest>=8.2.0",
+    "ruff>=0.5.0",
+    "taskipy>=1.13.0",
+    "jupyterlab>=4.2.0",
+    "ipykernel>=6.29.0",
+    "matplotlib>=3.9.0",
+    "pandas>=2.2.0",
+    "numpy>=1.26.0",
+    "scikit-learn>=1.5.0",
+]
+# Microsoft Presidio (PESADO: puxa spaCy + modelo de NLP). NÃO instalado por padrão.
+# Caminho de PRODUÇÃO da detecção/anonimização de PII — Doc 04, seções 5-6.
+# Habilite com: `uv sync --group presidio` && `python -m spacy download pt_core_news_lg`
+presidio = [
+    "presidio-analyzer>=2.2.0",
+    "presidio-anonymizer>=2.2.0",
+    "spacy>=3.7.0",
+]
+# Model Context Protocol — SDK oficial (Snippet 3 do Doc 04, seção 10).
+# Habilite com: `uv sync --group mcp`
+mcp = [
+    "mcp>=1.0.0",
+]
+# Backend/serviços Azure opcionais: Key Vault (cofre de tokens/CMK — Doc 04 §7) e
+# Azure OpenAI/Foundry (LLM_BACKEND=azure). Habilite com: `uv sync --group azure`
+azure = [
+    "azure-identity>=1.17.0",
+    "azure-keyvault-secrets>=4.8.0",
+    "openai>=1.40.0",
+]
+
+[tool.uv]
+# Coleção de material didático — não é um pacote instalável.
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+# Notebooks são artefatos didáticos com células propositalmente compactas
+# (imports agrupados, ; para brevidade). Não os submetemos ao lint de estilo.
+extend-exclude = ["notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+# Permite `from app... import` e `from src... import` sem instalar como pacote.
+pythonpath = ["."]
+addopts = "-q"
+testpaths = ["tests"]
+
+# Atalhos de tarefa — execute com: `uv run task <nome>`
+[tool.taskipy.tasks]
+up = "docker compose up -d"
+down = "docker compose down -v"
+logs = "docker compose logs -f"
+rag = "uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+mcp = "uvicorn app.mcp_server:app --host 0.0.0.0 --port 8090 --reload"
+seed-data = "python scripts/generate_datasets.py"
+eval = "python -m app.pii --evaluate --report reports/pii_eval.json"
+scan = "python -m app.pii --evaluate --live --report reports/pii_eval_live.json"
+test = "pytest"
+lint = "ruff check ."
+fmt = "ruff format ."
+lab = "jupyter lab"

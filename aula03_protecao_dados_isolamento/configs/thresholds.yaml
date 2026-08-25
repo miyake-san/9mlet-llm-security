@@ -1,0 +1,75 @@
+# ==========================================================================
+# thresholds.yaml — Política de proteção de dados e isolamento (Aula 03)
+#
+# Materializa as decisões de engenharia do Doc 04: detecção/anonimização de PII
+# (§5-6), anonimização reversível com cofre de tokens (§7), MINIMIZAÇÃO por
+# criticidade de fluxo (§12) e escopos mínimos de ferramenta (§9-10). Segurança
+# de dados é DECISÃO DE ENGENHARIA orientada a risco, não slogan.
+#
+# Montado no rag-api (read-only) e ajustável SEM rebuild.
+# ==========================================================================
+
+# --- Detecção de PII (Doc 04, §5-6: Analyzer = regex + contexto + checksum) ---
+pii:
+  language: pt
+  # Score mínimo (0-1) para aceitar uma detecção. Sobe -> menos FP; desce -> menos FN.
+  # O equilíbrio FN/FP é o mesmo princípio quantitativo da Aula 02, agora no DADO.
+  min_score: 0.5
+  # Entidades reconhecidas (recognizers BR customizados + internacionais do Presidio).
+  entities:
+    - BR_CPF
+    - BR_CNPJ
+    - BR_RG
+    - BR_CEP
+    - BR_ACCOUNT
+    - EMAIL_ADDRESS
+    - PHONE_NUMBER
+    - CREDIT_CARD
+    - PERSON
+  # Operador de anonimização por entidade:
+  #   tokenize = reversível via cofre (§7)  · mask = mascara dígitos
+  #   redact   = remove por completo         · hash = pseudonimização irreversível
+  operators:
+    BR_CPF: tokenize
+    BR_CNPJ: tokenize
+    BR_ACCOUNT: tokenize
+    CREDIT_CARD: tokenize
+    BR_RG: mask
+    BR_CEP: mask
+    EMAIL_ADDRESS: mask
+    PHONE_NUMBER: mask
+    PERSON: redact
+
+# --- Perfis de fluxo: MINIMIZAÇÃO de dados por criticidade (Doc 04, §12) -------
+# `allowed_pii` = entidades que o fluxo pode RECEBER; as demais são removidas já na
+# ENTRADA ("o dado mais seguro é aquele que não existe"). `rehydrate_on_egress`
+# controla se tokens voltam a valor real na saída (só para o titular autorizado).
+flows:
+  faq:
+    description: "Dúvidas genéricas (horário de agência) — não requer PII."
+    allowed_pii: []                       # minimização máxima
+    rehydrate_on_egress: false
+    required_tool_scopes: []
+  authenticated:
+    description: "Cliente autenticado consultando dados próprios."
+    allowed_pii: [BR_CPF, BR_ACCOUNT]
+    rehydrate_on_egress: true
+    required_tool_scopes: ["saldo:read"]
+  transactional:
+    description: "Operações sensíveis (risco máximo) — bloqueio agressivo."
+    allowed_pii: [BR_CPF, BR_ACCOUNT]
+    rehydrate_on_egress: true
+    required_tool_scopes: ["saldo:read"]
+
+# --- Cofre de tokens / anonimização reversível (Doc 04, §7) -------------------
+token_vault:
+  # O MESMO valor gera SEMPRE o MESMO token (coerência: o LLM raciocina sobre a
+  # entidade sem conhecê-la). O token não revela o dado (HMAC + truncamento).
+  token_format: "[{entity}_TOKEN_{digest}]"
+  digest_len: 8
+  deterministic: true
+
+# --- Observabilidade: PII em log TAMBÉM é PII (Doc 04, §12 — canais laterais) --
+logging:
+  anonymize_logs: true
+  max_log_chars: 2000

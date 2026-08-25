@@ -1,0 +1,200 @@
+{"id": "ref-0001", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 845.7, "response_len": 178.4, "groundedness": 0.9375}
+{"id": "ref-0002", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 941.1, "response_len": 142.0, "groundedness": 0.8349}
+{"id": "ref-0003", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 819.2, "response_len": 207.4, "groundedness": 0.8992}
+{"id": "ref-0004", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 672.0, "response_len": 255.2, "groundedness": 0.9389}
+{"id": "ref-0005", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 809.9, "response_len": 265.1, "groundedness": 0.9234}
+{"id": "ref-0006", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 671.1, "response_len": 234.8, "groundedness": 0.8521}
+{"id": "ref-0007", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 931.8, "response_len": 218.0, "groundedness": 0.8908}
+{"id": "ref-0008", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 697.9, "response_len": 268.9, "groundedness": 0.8923}
+{"id": "ref-0009", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 735.8, "response_len": 205.9, "groundedness": 0.9266}
+{"id": "ref-0010", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 854.8, "response_len": 236.5, "groundedness": 0.9215}
+{"id": "ref-0011", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 1121.2, "response_len": 203.7, "groundedness": 0.8744}
+{"id": "ref-0012", "prompt": "Como faço uma transferência via TED?", "latency_ms": 677.9, "response_len": 244.6, "groundedness": 0.9564}
+{"id": "ref-0013", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 782.9, "response_len": 186.4, "groundedness": 0.8588}
+{"id": "ref-0014", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 897.6, "response_len": 249.7, "groundedness": 0.9272}
+{"id": "ref-0015", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 700.2, "response_len": 229.3, "groundedness": 0.9058}
+{"id": "ref-0016", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 832.8, "response_len": 254.9, "groundedness": 0.9112}
+{"id": "ref-0017", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 901.8, "response_len": 222.7, "groundedness": 0.9145}
+{"id": "ref-0018", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 894.7, "response_len": 161.7, "groundedness": 0.884}
+{"id": "ref-0019", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 729.4, "response_len": 194.4, "groundedness": 0.8862}
+{"id": "ref-0020", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 1024.2, "response_len": 185.4, "groundedness": 0.9484}
+{"id": "ref-0021", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 547.6, "response_len": 206.6, "groundedness": 0.9081}
+{"id": "ref-0022", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 887.9, "response_len": 248.4, "groundedness": 0.9397}
+{"id": "ref-0023", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 747.7, "response_len": 201.5, "groundedness": 0.9429}
+{"id": "ref-0024", "prompt": "Como faço uma transferência via TED?", "latency_ms": 771.3, "response_len": 169.0, "groundedness": 0.8433}
+{"id": "ref-0025", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 662.1, "response_len": 239.9, "groundedness": 0.9071}
+{"id": "ref-0026", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 903.6, "response_len": 202.9, "groundedness": 0.9079}
+{"id": "ref-0027", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 893.8, "response_len": 207.6, "groundedness": 0.9228}
+{"id": "ref-0028", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 700.7, "response_len": 205.5, "groundedness": 0.8809}
+{"id": "ref-0029", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 620.6, "response_len": 239.5, "groundedness": 0.8765}
+{"id": "ref-0030", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 801.9, "response_len": 239.2, "groundedness": 0.9223}
+{"id": "ref-0031", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 899.8, "response_len": 216.1, "groundedness": 0.8788}
+{"id": "ref-0032", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 788.0, "response_len": 152.5, "groundedness": 0.8276}
+{"id": "ref-0033", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 601.6, "response_len": 180.1, "groundedness": 0.92}
+{"id": "ref-0034", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 664.2, "response_len": 204.9, "groundedness": 0.965}
+{"id": "ref-0035", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 746.6, "response_len": 249.5, "groundedness": 0.8533}
+{"id": "ref-0036", "prompt": "Como faço uma transferência via TED?", "latency_ms": 769.2, "response_len": 182.0, "groundedness": 0.883}
+{"id": "ref-0037", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 926.0, "response_len": 150.9, "groundedness": 0.9217}
+{"id": "ref-0038", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 835.7, "response_len": 196.2, "groundedness": 0.8277}
+{"id": "ref-0039", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 810.8, "response_len": 198.8, "groundedness": 0.9116}
+{"id": "ref-0040", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 803.3, "response_len": 284.1, "groundedness": 0.888}
+{"id": "ref-0041", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 646.5, "response_len": 227.2, "groundedness": 0.911}
+{"id": "ref-0042", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 1003.9, "response_len": 253.4, "groundedness": 0.9178}
+{"id": "ref-0043", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 1019.5, "response_len": 172.4, "groundedness": 0.868}
+{"id": "ref-0044", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 661.0, "response_len": 204.4, "groundedness": 0.8312}
+{"id": "ref-0045", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 895.3, "response_len": 211.1, "groundedness": 0.8265}
+{"id": "ref-0046", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 647.7, "response_len": 232.5, "groundedness": 0.9419}
+{"id": "ref-0047", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 1099.5, "response_len": 336.6, "groundedness": 0.9207}
+{"id": "ref-0048", "prompt": "Como faço uma transferência via TED?", "latency_ms": 651.6, "response_len": 134.7, "groundedness": 0.9134}
+{"id": "ref-0049", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 678.1, "response_len": 203.4, "groundedness": 0.8694}
+{"id": "ref-0050", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 778.9, "response_len": 262.6, "groundedness": 0.9079}
+{"id": "ref-0051", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 776.2, "response_len": 178.6, "groundedness": 0.8163}
+{"id": "ref-0052", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 727.1, "response_len": 217.8, "groundedness": 0.9884}
+{"id": "ref-0053", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 819.5, "response_len": 259.3, "groundedness": 0.875}
+{"id": "ref-0054", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 622.3, "response_len": 181.4, "groundedness": 0.8637}
+{"id": "ref-0055", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 1119.3, "response_len": 187.1, "groundedness": 0.9419}
+{"id": "ref-0056", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 664.6, "response_len": 257.3, "groundedness": 0.9192}
+{"id": "ref-0057", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 776.5, "response_len": 218.4, "groundedness": 0.8673}
+{"id": "ref-0058", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 866.9, "response_len": 201.8, "groundedness": 0.8387}
+{"id": "ref-0059", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 608.3, "response_len": 226.9, "groundedness": 0.979}
+{"id": "ref-0060", "prompt": "Como faço uma transferência via TED?", "latency_ms": 824.0, "response_len": 215.3, "groundedness": 0.9143}
+{"id": "ref-0061", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 995.9, "response_len": 228.8, "groundedness": 0.8795}
+{"id": "ref-0062", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 965.9, "response_len": 237.2, "groundedness": 0.9768}
+{"id": "ref-0063", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 827.5, "response_len": 171.0, "groundedness": 0.8316}
+{"id": "ref-0064", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 1047.6, "response_len": 288.9, "groundedness": 0.891}
+{"id": "ref-0065", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 742.5, "response_len": 278.5, "groundedness": 0.8446}
+{"id": "ref-0066", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 665.8, "response_len": 245.7, "groundedness": 0.8803}
+{"id": "ref-0067", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 799.2, "response_len": 213.5, "groundedness": 0.9169}
+{"id": "ref-0068", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 1011.1, "response_len": 223.6, "groundedness": 0.9322}
+{"id": "ref-0069", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 492.5, "response_len": 218.1, "groundedness": 0.8578}
+{"id": "ref-0070", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 617.2, "response_len": 184.9, "groundedness": 0.8833}
+{"id": "ref-0071", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 937.4, "response_len": 166.9, "groundedness": 0.9015}
+{"id": "ref-0072", "prompt": "Como faço uma transferência via TED?", "latency_ms": 727.4, "response_len": 206.9, "groundedness": 0.9501}
+{"id": "ref-0073", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 880.7, "response_len": 273.5, "groundedness": 0.8923}
+{"id": "ref-0074", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 695.6, "response_len": 211.0, "groundedness": 0.9121}
+{"id": "ref-0075", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 826.5, "response_len": 176.6, "groundedness": 0.9045}
+{"id": "ref-0076", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 834.2, "response_len": 320.7, "groundedness": 0.9938}
+{"id": "ref-0077", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 672.0, "response_len": 208.5, "groundedness": 0.8268}
+{"id": "ref-0078", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 711.4, "response_len": 232.6, "groundedness": 0.9603}
+{"id": "ref-0079", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 690.6, "response_len": 193.8, "groundedness": 0.7926}
+{"id": "ref-0080", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 775.6, "response_len": 177.5, "groundedness": 0.8735}
+{"id": "ref-0081", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 668.5, "response_len": 216.2, "groundedness": 0.8121}
+{"id": "ref-0082", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 579.9, "response_len": 305.2, "groundedness": 0.8356}
+{"id": "ref-0083", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 635.5, "response_len": 293.5, "groundedness": 1.0}
+{"id": "ref-0084", "prompt": "Como faço uma transferência via TED?", "latency_ms": 624.3, "response_len": 205.3, "groundedness": 0.9171}
+{"id": "ref-0085", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 1059.3, "response_len": 180.5, "groundedness": 0.8877}
+{"id": "ref-0086", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 916.6, "response_len": 237.4, "groundedness": 0.8812}
+{"id": "ref-0087", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 779.9, "response_len": 165.0, "groundedness": 0.8881}
+{"id": "ref-0088", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 760.0, "response_len": 229.3, "groundedness": 0.8722}
+{"id": "ref-0089", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 870.7, "response_len": 260.5, "groundedness": 0.9078}
+{"id": "ref-0090", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 852.8, "response_len": 222.1, "groundedness": 0.9}
+{"id": "ref-0091", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 691.8, "response_len": 232.7, "groundedness": 0.8951}
+{"id": "ref-0092", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 1114.0, "response_len": 282.9, "groundedness": 0.9193}
+{"id": "ref-0093", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 685.5, "response_len": 175.5, "groundedness": 0.9596}
+{"id": "ref-0094", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 839.4, "response_len": 239.2, "groundedness": 0.8128}
+{"id": "ref-0095", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 939.1, "response_len": 238.2, "groundedness": 0.8445}
+{"id": "ref-0096", "prompt": "Como faço uma transferência via TED?", "latency_ms": 729.3, "response_len": 230.5, "groundedness": 0.9026}
+{"id": "ref-0097", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 756.2, "response_len": 215.9, "groundedness": 0.8874}
+{"id": "ref-0098", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 822.9, "response_len": 278.9, "groundedness": 0.7717}
+{"id": "ref-0099", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 764.5, "response_len": 227.1, "groundedness": 0.9148}
+{"id": "ref-0100", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 744.2, "response_len": 149.7, "groundedness": 0.9164}
+{"id": "ref-0101", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 1059.1, "response_len": 158.6, "groundedness": 0.9432}
+{"id": "ref-0102", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 750.7, "response_len": 217.5, "groundedness": 0.8474}
+{"id": "ref-0103", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 749.8, "response_len": 272.0, "groundedness": 0.9291}
+{"id": "ref-0104", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 1059.8, "response_len": 267.1, "groundedness": 0.922}
+{"id": "ref-0105", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 1061.6, "response_len": 237.6, "groundedness": 0.9414}
+{"id": "ref-0106", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 755.5, "response_len": 222.7, "groundedness": 0.8651}
+{"id": "ref-0107", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 948.4, "response_len": 172.9, "groundedness": 0.9391}
+{"id": "ref-0108", "prompt": "Como faço uma transferência via TED?", "latency_ms": 771.4, "response_len": 266.8, "groundedness": 0.9375}
+{"id": "ref-0109", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 1073.1, "response_len": 249.2, "groundedness": 0.8214}
+{"id": "ref-0110", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 790.0, "response_len": 173.1, "groundedness": 0.8741}
+{"id": "ref-0111", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 1026.7, "response_len": 245.5, "groundedness": 0.8651}
+{"id": "ref-0112", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 647.9, "response_len": 221.3, "groundedness": 0.8392}
+{"id": "ref-0113", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 699.3, "response_len": 232.5, "groundedness": 0.9578}
+{"id": "ref-0114", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 891.3, "response_len": 128.3, "groundedness": 0.9152}
+{"id": "ref-0115", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 810.8, "response_len": 236.6, "groundedness": 0.9808}
+{"id": "ref-0116", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 490.5, "response_len": 196.4, "groundedness": 0.9295}
+{"id": "ref-0117", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 562.8, "response_len": 279.0, "groundedness": 0.9184}
+{"id": "ref-0118", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 927.0, "response_len": 197.2, "groundedness": 0.9407}
+{"id": "ref-0119", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 960.3, "response_len": 229.3, "groundedness": 0.9117}
+{"id": "ref-0120", "prompt": "Como faço uma transferência via TED?", "latency_ms": 840.6, "response_len": 185.5, "groundedness": 0.8926}
+{"id": "ref-0121", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 777.1, "response_len": 235.3, "groundedness": 0.95}
+{"id": "ref-0122", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 641.2, "response_len": 215.0, "groundedness": 0.9741}
+{"id": "ref-0123", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 688.5, "response_len": 187.1, "groundedness": 0.9101}
+{"id": "ref-0124", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 926.7, "response_len": 220.5, "groundedness": 0.9664}
+{"id": "ref-0125", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 928.5, "response_len": 253.7, "groundedness": 0.9277}
+{"id": "ref-0126", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 1149.1, "response_len": 211.8, "groundedness": 0.7998}
+{"id": "ref-0127", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 1040.6, "response_len": 201.7, "groundedness": 0.9054}
+{"id": "ref-0128", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 996.4, "response_len": 155.9, "groundedness": 0.8374}
+{"id": "ref-0129", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 559.8, "response_len": 188.2, "groundedness": 0.922}
+{"id": "ref-0130", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 878.6, "response_len": 231.1, "groundedness": 0.8294}
+{"id": "ref-0131", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 453.5, "response_len": 222.2, "groundedness": 0.8764}
+{"id": "ref-0132", "prompt": "Como faço uma transferência via TED?", "latency_ms": 868.9, "response_len": 248.1, "groundedness": 0.9069}
+{"id": "ref-0133", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 914.0, "response_len": 229.2, "groundedness": 0.9265}
+{"id": "ref-0134", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 694.3, "response_len": 212.8, "groundedness": 0.9098}
+{"id": "ref-0135", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 923.1, "response_len": 204.3, "groundedness": 0.9261}
+{"id": "ref-0136", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 760.1, "response_len": 215.3, "groundedness": 0.9415}
+{"id": "ref-0137", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 501.0, "response_len": 168.1, "groundedness": 0.8259}
+{"id": "ref-0138", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 450.0, "response_len": 192.9, "groundedness": 0.9375}
+{"id": "ref-0139", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 757.3, "response_len": 227.9, "groundedness": 0.9545}
+{"id": "ref-0140", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 999.2, "response_len": 217.2, "groundedness": 0.9677}
+{"id": "ref-0141", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 813.8, "response_len": 186.5, "groundedness": 0.8703}
+{"id": "ref-0142", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 577.9, "response_len": 184.5, "groundedness": 0.8821}
+{"id": "ref-0143", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 920.5, "response_len": 288.8, "groundedness": 0.8309}
+{"id": "ref-0144", "prompt": "Como faço uma transferência via TED?", "latency_ms": 858.9, "response_len": 178.4, "groundedness": 0.9237}
+{"id": "ref-0145", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 780.3, "response_len": 146.8, "groundedness": 0.9464}
+{"id": "ref-0146", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 709.2, "response_len": 198.6, "groundedness": 0.8465}
+{"id": "ref-0147", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 701.9, "response_len": 237.1, "groundedness": 0.8905}
+{"id": "ref-0148", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 849.3, "response_len": 234.5, "groundedness": 0.966}
+{"id": "ref-0149", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 748.6, "response_len": 160.9, "groundedness": 0.9534}
+{"id": "ref-0150", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 750.3, "response_len": 264.6, "groundedness": 0.9192}
+{"id": "ref-0151", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 780.3, "response_len": 234.0, "groundedness": 0.9976}
+{"id": "ref-0152", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 1111.5, "response_len": 222.8, "groundedness": 0.908}
+{"id": "ref-0153", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 961.4, "response_len": 186.2, "groundedness": 0.9167}
+{"id": "ref-0154", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 796.1, "response_len": 232.6, "groundedness": 0.8583}
+{"id": "ref-0155", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 561.6, "response_len": 137.1, "groundedness": 0.8441}
+{"id": "ref-0156", "prompt": "Como faço uma transferência via TED?", "latency_ms": 731.2, "response_len": 208.3, "groundedness": 0.9969}
+{"id": "ref-0157", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 965.9, "response_len": 181.5, "groundedness": 0.9174}
+{"id": "ref-0158", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 738.9, "response_len": 208.6, "groundedness": 0.9093}
+{"id": "ref-0159", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 892.9, "response_len": 206.4, "groundedness": 0.9532}
+{"id": "ref-0160", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 628.7, "response_len": 220.3, "groundedness": 1.0}
+{"id": "ref-0161", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 833.5, "response_len": 277.3, "groundedness": 0.9046}
+{"id": "ref-0162", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 887.1, "response_len": 217.7, "groundedness": 0.8915}
+{"id": "ref-0163", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 683.1, "response_len": 237.2, "groundedness": 0.8574}
+{"id": "ref-0164", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 899.8, "response_len": 263.4, "groundedness": 0.9183}
+{"id": "ref-0165", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 757.1, "response_len": 238.2, "groundedness": 0.8846}
+{"id": "ref-0166", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 940.3, "response_len": 146.7, "groundedness": 0.8832}
+{"id": "ref-0167", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 501.4, "response_len": 160.2, "groundedness": 0.9682}
+{"id": "ref-0168", "prompt": "Como faço uma transferência via TED?", "latency_ms": 934.3, "response_len": 191.2, "groundedness": 0.8249}
+{"id": "ref-0169", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 355.3, "response_len": 198.3, "groundedness": 1.0}
+{"id": "ref-0170", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 865.2, "response_len": 197.6, "groundedness": 0.9233}
+{"id": "ref-0171", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 565.9, "response_len": 208.1, "groundedness": 0.905}
+{"id": "ref-0172", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 787.1, "response_len": 251.6, "groundedness": 0.9172}
+{"id": "ref-0173", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 900.2, "response_len": 192.5, "groundedness": 0.9449}
+{"id": "ref-0174", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 1044.3, "response_len": 181.2, "groundedness": 0.8556}
+{"id": "ref-0175", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 1000.4, "response_len": 212.3, "groundedness": 0.9702}
+{"id": "ref-0176", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 733.6, "response_len": 278.2, "groundedness": 0.9066}
+{"id": "ref-0177", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 838.7, "response_len": 282.6, "groundedness": 0.8819}
+{"id": "ref-0178", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 658.8, "response_len": 202.1, "groundedness": 0.9226}
+{"id": "ref-0179", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 565.1, "response_len": 245.5, "groundedness": 0.8731}
+{"id": "ref-0180", "prompt": "Como faço uma transferência via TED?", "latency_ms": 972.2, "response_len": 124.2, "groundedness": 0.8607}
+{"id": "ref-0181", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 547.0, "response_len": 187.0, "groundedness": 0.9124}
+{"id": "ref-0182", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 773.1, "response_len": 209.9, "groundedness": 0.892}
+{"id": "ref-0183", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 830.5, "response_len": 179.7, "groundedness": 0.9353}
+{"id": "ref-0184", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 899.4, "response_len": 235.4, "groundedness": 0.9278}
+{"id": "ref-0185", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 844.5, "response_len": 301.4, "groundedness": 0.8956}
+{"id": "ref-0186", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 753.9, "response_len": 189.9, "groundedness": 0.8484}
+{"id": "ref-0187", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 613.3, "response_len": 184.4, "groundedness": 0.8965}
+{"id": "ref-0188", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 850.1, "response_len": 222.0, "groundedness": 0.8617}
+{"id": "ref-0189", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 935.0, "response_len": 249.6, "groundedness": 0.892}
+{"id": "ref-0190", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 702.1, "response_len": 241.9, "groundedness": 0.9094}
+{"id": "ref-0191", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 582.8, "response_len": 217.3, "groundedness": 0.9131}
+{"id": "ref-0192", "prompt": "Como faço uma transferência via TED?", "latency_ms": 665.0, "response_len": 227.6, "groundedness": 0.8273}
+{"id": "ref-0193", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 1000.4, "response_len": 269.9, "groundedness": 0.8874}
+{"id": "ref-0194", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 854.5, "response_len": 123.6, "groundedness": 0.8422}
+{"id": "ref-0195", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 755.9, "response_len": 177.1, "groundedness": 0.9357}
+{"id": "ref-0196", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 1099.6, "response_len": 172.9, "groundedness": 0.8581}
+{"id": "ref-0197", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 835.3, "response_len": 284.4, "groundedness": 0.8389}
+{"id": "ref-0198", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 837.4, "response_len": 292.9, "groundedness": 0.8174}
+{"id": "ref-0199", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 607.8, "response_len": 203.1, "groundedness": 0.874}
+{"id": "ref-0200", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 921.9, "response_len": 229.7, "groundedness": 0.8113}

@@ -1,0 +1,75 @@
+# ==========================================================================
+# Pipeline DevSecOps — Aula 08 (Doc 04, §9: "segurança como propriedade contínua").
+#
+# Materializa os GATES automáticos que nenhuma versão do Aurora Assist ultrapassa
+# sem aprovação (shift-left): lint, testes, deploy gate (red team + grounding + PII
+# + rollback por SLO), scan de dependências, secret scan e geração do AIBOM. Roda
+# 100% OFFLINE (backend stub determinístico) — o mesmo gate que o `redteam-ci`
+# executa contra o agent-app ao vivo no Lab (vídeo 4).
+# ==========================================================================
+name: devsecops-pipeline-aula08
+
+on:
+  push:
+    paths: ["aula08_governanca_deploy_seguro/**"]
+  pull_request:
+    paths: ["aula08_governanca_deploy_seguro/**"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: aula08_governanca_deploy_seguro
+
+jobs:
+  devsecops-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "0.5.11"
+
+      - name: Sincronizar dependências (offline-first)
+        run: uv sync
+
+      - name: Gerar datasets sintéticos (seed fixa = 42)
+        run: uv run task seed-data
+
+      # --- Gate: qualidade de código (shift-left) ---
+      - name: Lint (ruff)
+        run: uv run task lint
+
+      # --- Gate: testes de segurança (guardrails, MCP, deploy gate, regressão) ---
+      - name: Testes de segurança
+        run: uv run task test
+
+      # --- Gate: deploy gate DevSecOps sobre a versão candidata ENDURECIDA ---
+      # Falha o job se o deploy for bloqueado (rollback por SLO crítico).
+      - name: Deploy gate (red team + grounding + PII + rollback por SLO)
+        run: uv run python -m app.deploy_gates --guardrails --report reports/deploy_report.json --gate
+
+      # --- Gate: AIBOM (CycloneDX ML-BOM) — rastreabilidade de supply chain (§8) ---
+      - name: Gerar AIBOM (CycloneDX ML-BOM)
+        run: uv run task aibom
+
+      # --- Evidência: publica os relatórios do gate (auditoria/governança) ---
+      - name: Publicar relatórios (deploy + AIBOM)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deploy-gate-reports
+          path: |
+            aula08_governanca_deploy_seguro/reports/deploy_report.json
+            aula08_governanca_deploy_seguro/reports/aibom.cdx.json
+          if-no-files-found: ignore
+
+  # NOTA: em produção, gates adicionais completariam o shift-left do Doc 04 (§9):
+  #   - dependency-scan  (ex.: `uv pip audit` / Dependabot) — supply chain (LLM05)
+  #   - secret-scan      (ex.: gitleaks) — impedir vazamento de credenciais
+  #   - iac-validation   (ex.: bicep build / checkov) — Infra as Code
+  #   - red-team pesado  (PyRIT/Garak via container `redteam-ci`, grupo `security`)

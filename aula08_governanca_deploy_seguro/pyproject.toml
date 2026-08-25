@@ -1,0 +1,106 @@
+[project]
+name = "aula08-governanca-deploy-seguro"
+version = "0.1.0"
+description = "Aula 08 — Governança de IA e Implantação Segura em Produção (capstone): NIST AI RMF, ISO/IEC 42001, EU AI Act, deployment blue/green/canary/shadow, rollback por SLO, AIBOM CycloneDX, resposta a incidentes e DevSecOps."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Diogo Miyake" }]
+keywords = [
+    "llm-security",
+    "ai-governance",
+    "nist-ai-rmf",
+    "iso-42001",
+    "eu-ai-act",
+    "aibom",
+    "cyclonedx",
+    "devsecops",
+    "canary-deploy",
+    "microsoft-agent-framework",
+]
+
+# Dependências de runtime da APLICAÇÃO (app/ + src/). Mantidas LEVES e offline-first
+# para que `uv sync` + `uv run task test` funcionem sem baixar modelos pesados. As
+# implementações de governança/deploy/AIBOM são puras (src/security); as bibliotecas
+# de referência (CycloneDX, PyRIT, Garak) ficam em grupos opcionais.
+dependencies = [
+    "fastapi>=0.115.0,<0.116.0",
+    "uvicorn[standard]>=0.30.0,<0.35.0",
+    "httpx>=0.27.0,<0.28.0",
+    "pydantic>=2.7.0,<3.0.0",
+    "pydantic-settings>=2.4.0,<3.0.0",
+    "pyyaml>=6.0.0,<7.0.0",
+    "faker>=26.0.0,<31.0.0",
+    "rich>=13.7.0,<14.0.0",
+]
+
+[project.urls]
+Repository = "https://github.com/miyake-san/9mlet-llm-security"
+
+# Grupos de dependências (PEP 735). Apenas `dev` é instalado por padrão no `uv sync`.
+[dependency-groups]
+dev = [
+    "pytest>=8.2.0",
+    "ruff>=0.5.0",
+    "taskipy>=1.13.0",
+    "jupyterlab>=4.2.0",
+    "ipykernel>=6.29.0",
+    "matplotlib>=3.9.0",
+    "pandas>=2.2.0",
+]
+# Ferramentas de segurança do pipeline DevSecOps (PESADAS): AIBOM real (CycloneDX),
+# red team (PyRIT/Garak). NÃO instaladas por padrão — o gate offline usa as
+# implementações puras de src/security. Habilite com: `uv sync --group security`
+# (ou use o container `redteam-ci`/`aibom-gen`).
+security = [
+    "cyclonedx-python-lib>=7.0.0,<9.0.0",
+    "pyrit>=0.5.0",
+    "garak>=0.9.0",
+]
+# Backend Azure OpenAI / Azure AI Foundry + Agent Framework (opcional).
+# Habilite com: `uv sync --group azure`.
+azure = [
+    "openai>=1.40.0",
+    "azure-identity>=1.17.0",
+    "azure-ai-projects>=1.0.0b1",
+]
+
+[tool.uv]
+# Coleção de material didático — não é um pacote instalável.
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+# Notebooks didáticos usam idiomas legítimos de aula: setup de `sys.path`/`os.environ`
+# antes dos imports (E402), células compactas com `;` (E702), imports ilustrativos
+# (F401/I001), formatação com `%` para saídas legíveis (UP031) e linhas longas (E501).
+# O código de app/src/tests permanece estritamente verificado.
+[tool.ruff.lint.per-file-ignores]
+"notebooks/*.ipynb" = ["E401", "E402", "E501", "E702", "B905", "F401", "I001", "UP031"]
+
+[tool.pytest.ini_options]
+# Permite `from app... import` e `from src... import` sem instalar como pacote.
+pythonpath = ["."]
+addopts = "-q"
+testpaths = ["tests"]
+
+# Atalhos de tarefa — execute com: `uv run task <nome>`
+[tool.taskipy.tasks]
+up = "docker compose up -d"
+down = "docker compose down -v"
+logs = "docker compose logs -f"
+api = "uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+seed-data = "python scripts/generate_datasets.py"
+gate = "python -m app.deploy_gates --guardrails --report reports/deploy_report.json"
+gate-naive = "python -m app.deploy_gates --report reports/deploy_report_naive.json"
+aibom = "python -m app.aibom --output reports/aibom.cdx.json"
+scan = "docker compose --profile security run --rm redteam-ci"
+test = "pytest"
+lint = "ruff check ."
+fmt = "ruff format ."
+lab = "jupyter lab"

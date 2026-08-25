@@ -1,0 +1,6 @@
+{"request_id": "dsr-seed-001", "subject_id": "cli-90001", "dsr_type": "access", "note": "Titular solicita confirmação e acesso aos dados (art. 18, I-II)."}
+{"request_id": "dsr-seed-002", "subject_id": "cli-90002", "dsr_type": "erasure", "note": "Titular exerce o direito ao esquecimento (art. 18, VI)."}
+{"request_id": "dsr-seed-003", "subject_id": "cli-90003", "dsr_type": "review", "note": "Titular pede revisão de decisão automatizada (art. 20)."}
+{"request_id": "dsr-seed-004", "subject_id": "cli-90004", "dsr_type": "erasure", "note": "Encerramento de conta: apagar dados pessoais do índice."}
+{"request_id": "dsr-seed-005", "subject_id": "cli-90005", "dsr_type": "access", "note": "Auditoria interna: relatório do que se sabe do titular."}
+{"request_id": "dsr-seed-006", "subject_id": "cli-90006", "dsr_type": "rectification", "note": "Titular pede correção de dado cadastral (art. 18, III)."}

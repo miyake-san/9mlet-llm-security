@@ -1,0 +1,21 @@
+# Contexto de build enxuto: só entram app/, src/, configs/, data/ e manifestos.
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+notebooks/
+tests/
+reports/
+docs/
+
+# Segredos e artefatos locais NUNCA entram na imagem
+.env
+.env.*
+!.env.example
+*.log
+uv.lock
+.git/
+.gitignore
+README.md

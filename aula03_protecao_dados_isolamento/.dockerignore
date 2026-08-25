@@ -1,0 +1,29 @@
+# Contexto de build enxuto e seguro (não vazar segredos/artefatos)
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.uv/
+uv.lock
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Notebooks e material didático não vão para a imagem do app
+notebooks/
+docs/
+
+# Artefatos gerados (inclui o cofre de tokens local — NUNCA na imagem)
+reports/
+*.log
+token_vault.json
+
+# Git / IDE
+.git/
+.gitignore
+.vscode/
+.idea/

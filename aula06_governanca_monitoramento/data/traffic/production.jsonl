@@ -1,0 +1,200 @@
+{"id": "prod-0001", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 1506.2, "response_len": 268.0, "groundedness": 0.9329}
+{"id": "prod-0002", "prompt": "como ativo o pix por aproximacao no celular?", "latency_ms": 1049.0, "response_len": 262.7, "groundedness": 0.8449}
+{"id": "prod-0003", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 1605.2, "response_len": 360.3, "groundedness": 0.5777}
+{"id": "prod-0004", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 1515.2, "response_len": 226.9, "groundedness": 0.8082}
+{"id": "prod-0005", "prompt": "tem como investir em cripto staking pelo banco?", "latency_ms": 730.5, "response_len": 360.2, "groundedness": 0.6832}
+{"id": "prod-0006", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 786.9, "response_len": 384.2, "groundedness": 0.809}
+{"id": "prod-0007", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 1054.4, "response_len": 450.6, "groundedness": 0.7271}
+{"id": "prod-0008", "prompt": "como ativo o pix por aproximacao no celular?", "latency_ms": 1312.8, "response_len": 344.2, "groundedness": 0.7056}
+{"id": "prod-0009", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 1488.5, "response_len": 272.0, "groundedness": 0.7306}
+{"id": "prod-0010", "prompt": "quero saber do open finance e portabilidade de salario rapidão", "latency_ms": 1845.1, "response_len": 226.3, "groundedness": 0.4905}
+{"id": "prod-0011", "prompt": "como ativo o pix por aproximacao no celular?", "latency_ms": 1944.4, "response_len": 549.4, "groundedness": 0.7314}
+{"id": "prod-0012", "prompt": "aurora cripto tem taxa de custodia? responde rapido pfv", "latency_ms": 525.3, "response_len": 292.1, "groundedness": 0.7457}
+{"id": "prod-0013", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 1224.0, "response_len": 219.8, "groundedness": 0.8495}
+{"id": "prod-0014", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 1509.8, "response_len": 185.5, "groundedness": 0.8639}
+{"id": "prod-0015", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 2121.1, "response_len": 335.5, "groundedness": 0.7395}
+{"id": "prod-0016", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 1243.2, "response_len": 375.4, "groundedness": 0.5723}
+{"id": "prod-0017", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 1365.8, "response_len": 284.9, "groundedness": 1.0}
+{"id": "prod-0018", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 1230.3, "response_len": 470.1, "groundedness": 0.6476}
+{"id": "prod-0019", "prompt": "Como faço uma transferência via TED?", "latency_ms": 1534.9, "response_len": 348.7, "groundedness": 0.6757}
+{"id": "prod-0020", "prompt": "e a conta global em dolar, ja lancou?", "latency_ms": 1371.0, "response_len": 429.1, "groundedness": 0.7411}
+{"id": "prod-0021", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 623.2, "response_len": 318.4, "groundedness": 0.6717}
+{"id": "prod-0022", "prompt": "quero saber do open finance e portabilidade de salario rapidão", "latency_ms": 1163.1, "response_len": 312.7, "groundedness": 0.5753}
+{"id": "prod-0023", "prompt": "consigo antecipar o fgts pelo app novo de vcs?", "latency_ms": 653.7, "response_len": 363.4, "groundedness": 0.7173}
+{"id": "prod-0024", "prompt": "manda ai como funciona o pix parcelado novo", "latency_ms": 274.1, "response_len": 390.6, "groundedness": 0.8127}
+{"id": "prod-0025", "prompt": "como ativo o pix por aproximacao no celular?", "latency_ms": 1014.5, "response_len": 201.5, "groundedness": 0.8803}
+{"id": "prod-0026", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 1439.7, "response_len": 534.4, "groundedness": 0.8304}
+{"id": "prod-0027", "prompt": "o tal do buy now pay later de vcs cobra juros?", "latency_ms": 1455.1, "response_len": 305.0, "groundedness": 0.878}
+{"id": "prod-0028", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 1550.0, "response_len": 432.7, "groundedness": 0.7174}
+{"id": "prod-0029", "prompt": "como ativo o pix por aproximacao no celular?", "latency_ms": 1125.8, "response_len": 276.9, "groundedness": 0.8749}
+{"id": "prod-0030", "prompt": "o tal do buy now pay later de vcs cobra juros?", "latency_ms": 1899.3, "response_len": 278.7, "groundedness": 0.729}
+{"id": "prod-0031", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 1425.6, "response_len": 297.9, "groundedness": 0.8942}
+{"id": "prod-0032", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 399.3, "response_len": 245.6, "groundedness": 0.6861}
+{"id": "prod-0033", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 371.9, "response_len": 233.3, "groundedness": 0.6702}
+{"id": "prod-0034", "prompt": "consigo antecipar o fgts pelo app novo de vcs?", "latency_ms": 1219.6, "response_len": 420.2, "groundedness": 0.7506}
+{"id": "prod-0035", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 887.7, "response_len": 314.9, "groundedness": 0.9059}
+{"id": "prod-0036", "prompt": "e a conta global em dolar, ja lancou?", "latency_ms": 909.6, "response_len": 238.0, "groundedness": 0.847}
+{"id": "prod-0037", "prompt": "blz e o cashback do cartao aurora black, quanto rende?", "latency_ms": 1211.4, "response_len": 378.3, "groundedness": 0.7784}
+{"id": "prod-0038", "prompt": "tem como investir em cripto staking pelo banco?", "latency_ms": 1580.7, "response_len": 226.8, "groundedness": 0.7785}
+{"id": "prod-0039", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 1215.7, "response_len": 210.6, "groundedness": 0.5924}
+{"id": "prod-0040", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 1574.3, "response_len": 288.4, "groundedness": 0.6573}
+{"id": "prod-0041", "prompt": "quero saber do open finance e portabilidade de salario rapidão", "latency_ms": 1261.5, "response_len": 421.5, "groundedness": 0.5063}
+{"id": "prod-0042", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 701.3, "response_len": 236.9, "groundedness": 0.9553}
+{"id": "prod-0043", "prompt": "vcs tao com aurora cripto agora? como compro bitcoin no app", "latency_ms": 1413.0, "response_len": 389.1, "groundedness": 0.6432}
+{"id": "prod-0044", "prompt": "Como faço uma transferência via TED?", "latency_ms": 852.2, "response_len": 360.3, "groundedness": 0.787}
+{"id": "prod-0045", "prompt": "vcs tao com aurora cripto agora? como compro bitcoin no app", "latency_ms": 1519.5, "response_len": 303.1, "groundedness": 0.8134}
+{"id": "prod-0046", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 1363.2, "response_len": 390.0, "groundedness": 0.8768}
+{"id": "prod-0047", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 652.1, "response_len": 117.7, "groundedness": 0.9002}
+{"id": "prod-0048", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 1775.1, "response_len": 228.1, "groundedness": 0.5568}
+{"id": "prod-0049", "prompt": "e a conta global em dolar, ja lancou?", "latency_ms": 1339.6, "response_len": 403.8, "groundedness": 0.9957}
+{"id": "prod-0050", "prompt": "vcs tao com aurora cripto agora? como compro bitcoin no app", "latency_ms": 1506.5, "response_len": 286.5, "groundedness": 0.6728}
+{"id": "prod-0051", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 1304.6, "response_len": 293.1, "groundedness": 0.6582}
+{"id": "prod-0052", "prompt": "tem como investir em cripto staking pelo banco?", "latency_ms": 2119.5, "response_len": 480.7, "groundedness": 0.9163}
+{"id": "prod-0053", "prompt": "como ativo o pix por aproximacao no celular?", "latency_ms": 931.7, "response_len": 397.0, "groundedness": 0.8568}
+{"id": "prod-0054", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 1477.0, "response_len": 432.5, "groundedness": 0.8562}
+{"id": "prod-0055", "prompt": "e a conta global em dolar, ja lancou?", "latency_ms": 1596.0, "response_len": 377.3, "groundedness": 0.8209}
+{"id": "prod-0056", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 586.6, "response_len": 327.5, "groundedness": 0.7133}
+{"id": "prod-0057", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 788.1, "response_len": 471.4, "groundedness": 0.9875}
+{"id": "prod-0058", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 1843.7, "response_len": 343.0, "groundedness": 0.9421}
+{"id": "prod-0059", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 1304.8, "response_len": 338.3, "groundedness": 0.6488}
+{"id": "prod-0060", "prompt": "quero saber do open finance e portabilidade de salario rapidão", "latency_ms": 1458.8, "response_len": 325.4, "groundedness": 0.6237}
+{"id": "prod-0061", "prompt": "blz e o cashback do cartao aurora black, quanto rende?", "latency_ms": 1279.5, "response_len": 312.8, "groundedness": 0.9957}
+{"id": "prod-0062", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 1657.7, "response_len": 321.0, "groundedness": 0.8099}
+{"id": "prod-0063", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 1317.7, "response_len": 301.7, "groundedness": 0.6501}
+{"id": "prod-0064", "prompt": "o tal do buy now pay later de vcs cobra juros?", "latency_ms": 1239.6, "response_len": 252.9, "groundedness": 0.63}
+{"id": "prod-0065", "prompt": "manda ai como funciona o pix parcelado novo", "latency_ms": 1504.5, "response_len": 355.2, "groundedness": 0.5656}
+{"id": "prod-0066", "prompt": "tem como investir em cripto staking pelo banco?", "latency_ms": 1250.9, "response_len": 409.6, "groundedness": 0.9071}
+{"id": "prod-0067", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 1710.3, "response_len": 323.5, "groundedness": 0.6786}
+{"id": "prod-0068", "prompt": "manda ai como funciona o pix parcelado novo", "latency_ms": 866.5, "response_len": 351.0, "groundedness": 0.8255}
+{"id": "prod-0069", "prompt": "o tal do buy now pay later de vcs cobra juros?", "latency_ms": 1814.9, "response_len": 419.0, "groundedness": 0.7641}
+{"id": "prod-0070", "prompt": "vcs tao com aurora cripto agora? como compro bitcoin no app", "latency_ms": 802.3, "response_len": 291.3, "groundedness": 0.8061}
+{"id": "prod-0071", "prompt": "vcs tao com aurora cripto agora? como compro bitcoin no app", "latency_ms": 1219.2, "response_len": 268.0, "groundedness": 0.8103}
+{"id": "prod-0072", "prompt": "blz e o cashback do cartao aurora black, quanto rende?", "latency_ms": 1098.4, "response_len": 263.5, "groundedness": 0.8174}
+{"id": "prod-0073", "prompt": "vcs tao com aurora cripto agora? como compro bitcoin no app", "latency_ms": 1139.2, "response_len": 342.0, "groundedness": 0.8128}
+{"id": "prod-0074", "prompt": "Como faço uma transferência via TED?", "latency_ms": 844.2, "response_len": 276.7, "groundedness": 0.9525}
+{"id": "prod-0075", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 835.2, "response_len": 129.5, "groundedness": 0.5566}
+{"id": "prod-0076", "prompt": "quero saber do open finance e portabilidade de salario rapidão", "latency_ms": 1311.6, "response_len": 322.8, "groundedness": 0.7659}
+{"id": "prod-0077", "prompt": "o tal do buy now pay later de vcs cobra juros?", "latency_ms": 1785.7, "response_len": 79.4, "groundedness": 0.8275}
+{"id": "prod-0078", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 1924.6, "response_len": 218.5, "groundedness": 0.7344}
+{"id": "prod-0079", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 998.8, "response_len": 239.5, "groundedness": 0.7408}
+{"id": "prod-0080", "prompt": "tem como investir em cripto staking pelo banco?", "latency_ms": 1871.0, "response_len": 485.4, "groundedness": 0.7397}
+{"id": "prod-0081", "prompt": "consigo antecipar o fgts pelo app novo de vcs?", "latency_ms": 2062.0, "response_len": 323.2, "groundedness": 0.9904}
+{"id": "prod-0082", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 1262.7, "response_len": 331.8, "groundedness": 0.8239}
+{"id": "prod-0083", "prompt": "consigo antecipar o fgts pelo app novo de vcs?", "latency_ms": 2571.5, "response_len": 396.6, "groundedness": 0.6951}
+{"id": "prod-0084", "prompt": "e a conta global em dolar, ja lancou?", "latency_ms": 1687.6, "response_len": 287.4, "groundedness": 0.7212}
+{"id": "prod-0085", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 1663.4, "response_len": 322.8, "groundedness": 0.8134}
+{"id": "prod-0086", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 1305.6, "response_len": 350.3, "groundedness": 0.831}
+{"id": "prod-0087", "prompt": "aurora cripto tem taxa de custodia? responde rapido pfv", "latency_ms": 525.2, "response_len": 380.0, "groundedness": 0.6622}
+{"id": "prod-0088", "prompt": "blz e o cashback do cartao aurora black, quanto rende?", "latency_ms": 723.1, "response_len": 314.7, "groundedness": 0.7901}
+{"id": "prod-0089", "prompt": "manda ai como funciona o pix parcelado novo", "latency_ms": 1022.6, "response_len": 394.8, "groundedness": 0.6189}
+{"id": "prod-0090", "prompt": "vcs tao com aurora cripto agora? como compro bitcoin no app", "latency_ms": 1137.2, "response_len": 267.4, "groundedness": 0.7744}
+{"id": "prod-0091", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 1411.5, "response_len": 229.3, "groundedness": 0.8669}
+{"id": "prod-0092", "prompt": "quero saber do open finance e portabilidade de salario rapidão", "latency_ms": 1325.2, "response_len": 149.7, "groundedness": 0.545}
+{"id": "prod-0093", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 1295.1, "response_len": 300.1, "groundedness": 0.7676}
+{"id": "prod-0094", "prompt": "Como faço uma transferência via TED?", "latency_ms": 1288.8, "response_len": 340.3, "groundedness": 0.8937}
+{"id": "prod-0095", "prompt": "manda ai como funciona o pix parcelado novo", "latency_ms": 855.6, "response_len": 214.5, "groundedness": 0.6488}
+{"id": "prod-0096", "prompt": "manda ai como funciona o pix parcelado novo", "latency_ms": 1415.6, "response_len": 432.0, "groundedness": 0.7282}
+{"id": "prod-0097", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 299.3, "response_len": 166.6, "groundedness": 0.68}
+{"id": "prod-0098", "prompt": "consigo antecipar o fgts pelo app novo de vcs?", "latency_ms": 1076.9, "response_len": 283.2, "groundedness": 0.7846}
+{"id": "prod-0099", "prompt": "blz e o cashback do cartao aurora black, quanto rende?", "latency_ms": 1175.3, "response_len": 414.4, "groundedness": 0.6989}
+{"id": "prod-0100", "prompt": "o tal do buy now pay later de vcs cobra juros?", "latency_ms": 955.1, "response_len": 363.1, "groundedness": 0.5957}
+{"id": "prod-0101", "prompt": "manda ai como funciona o pix parcelado novo", "latency_ms": 1455.9, "response_len": 329.2, "groundedness": 0.7623}
+{"id": "prod-0102", "prompt": "quero saber do open finance e portabilidade de salario rapidão", "latency_ms": 1935.3, "response_len": 264.0, "groundedness": 1.0}
+{"id": "prod-0103", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 1209.8, "response_len": 205.1, "groundedness": 0.7884}
+{"id": "prod-0104", "prompt": "vcs tao com aurora cripto agora? como compro bitcoin no app", "latency_ms": 869.5, "response_len": 252.3, "groundedness": 0.8276}
+{"id": "prod-0105", "prompt": "blz e o cashback do cartao aurora black, quanto rende?", "latency_ms": 1522.2, "response_len": 264.0, "groundedness": 0.8985}
+{"id": "prod-0106", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 1763.0, "response_len": 449.3, "groundedness": 0.8435}
+{"id": "prod-0107", "prompt": "como ativo o pix por aproximacao no celular?", "latency_ms": 1845.4, "response_len": 150.7, "groundedness": 0.7419}
+{"id": "prod-0108", "prompt": "blz e o cashback do cartao aurora black, quanto rende?", "latency_ms": 953.2, "response_len": 330.7, "groundedness": 0.7114}
+{"id": "prod-0109", "prompt": "Como faço uma transferência via TED?", "latency_ms": 1233.5, "response_len": 489.4, "groundedness": 0.7596}
+{"id": "prod-0110", "prompt": "vcs tao com aurora cripto agora? como compro bitcoin no app", "latency_ms": 1465.5, "response_len": 299.1, "groundedness": 0.7891}
+{"id": "prod-0111", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 1302.4, "response_len": 360.3, "groundedness": 0.9198}
+{"id": "prod-0112", "prompt": "e a conta global em dolar, ja lancou?", "latency_ms": 1959.0, "response_len": 347.9, "groundedness": 0.8507}
+{"id": "prod-0113", "prompt": "blz e o cashback do cartao aurora black, quanto rende?", "latency_ms": 839.7, "response_len": 312.1, "groundedness": 0.8928}
+{"id": "prod-0114", "prompt": "blz e o cashback do cartao aurora black, quanto rende?", "latency_ms": 1646.4, "response_len": 339.0, "groundedness": 0.8864}
+{"id": "prod-0115", "prompt": "aurora cripto tem taxa de custodia? responde rapido pfv", "latency_ms": 1496.3, "response_len": 428.0, "groundedness": 0.8147}
+{"id": "prod-0116", "prompt": "blz e o cashback do cartao aurora black, quanto rende?", "latency_ms": 1157.7, "response_len": 350.2, "groundedness": 0.4283}
+{"id": "prod-0117", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 1453.2, "response_len": 20.0, "groundedness": 0.5732}
+{"id": "prod-0118", "prompt": "manda ai como funciona o pix parcelado novo", "latency_ms": 1480.7, "response_len": 363.0, "groundedness": 0.6405}
+{"id": "prod-0119", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 1015.2, "response_len": 443.3, "groundedness": 0.7219}
+{"id": "prod-0120", "prompt": "consigo antecipar o fgts pelo app novo de vcs?", "latency_ms": 2197.2, "response_len": 319.8, "groundedness": 0.829}
+{"id": "prod-0121", "prompt": "Como faço uma transferência via TED?", "latency_ms": 1946.7, "response_len": 331.8, "groundedness": 0.6597}
+{"id": "prod-0122", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 1256.1, "response_len": 316.8, "groundedness": 0.6162}
+{"id": "prod-0123", "prompt": "aurora cripto tem taxa de custodia? responde rapido pfv", "latency_ms": 1197.7, "response_len": 253.2, "groundedness": 0.8909}
+{"id": "prod-0124", "prompt": "tem como investir em cripto staking pelo banco?", "latency_ms": 1313.8, "response_len": 294.5, "groundedness": 0.7673}
+{"id": "prod-0125", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 1389.2, "response_len": 375.5, "groundedness": 0.66}
+{"id": "prod-0126", "prompt": "o tal do buy now pay later de vcs cobra juros?", "latency_ms": 883.4, "response_len": 419.4, "groundedness": 0.7305}
+{"id": "prod-0127", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 733.3, "response_len": 359.9, "groundedness": 0.8356}
+{"id": "prod-0128", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 687.7, "response_len": 340.7, "groundedness": 0.8683}
+{"id": "prod-0129", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 1449.8, "response_len": 376.9, "groundedness": 0.6115}
+{"id": "prod-0130", "prompt": "quero saber do open finance e portabilidade de salario rapidão", "latency_ms": 1432.4, "response_len": 292.8, "groundedness": 0.7221}
+{"id": "prod-0131", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 1648.2, "response_len": 453.1, "groundedness": 0.9953}
+{"id": "prod-0132", "prompt": "o tal do buy now pay later de vcs cobra juros?", "latency_ms": 1825.9, "response_len": 310.1, "groundedness": 0.8223}
+{"id": "prod-0133", "prompt": "e a conta global em dolar, ja lancou?", "latency_ms": 1606.7, "response_len": 330.9, "groundedness": 0.7957}
+{"id": "prod-0134", "prompt": "aurora cripto tem taxa de custodia? responde rapido pfv", "latency_ms": 1629.5, "response_len": 314.7, "groundedness": 0.6925}
+{"id": "prod-0135", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 1134.2, "response_len": 377.1, "groundedness": 0.7804}
+{"id": "prod-0136", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 1436.1, "response_len": 380.3, "groundedness": 0.735}
+{"id": "prod-0137", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 1602.5, "response_len": 354.1, "groundedness": 0.6318}
+{"id": "prod-0138", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 1876.9, "response_len": 274.9, "groundedness": 0.5814}
+{"id": "prod-0139", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 882.0, "response_len": 228.1, "groundedness": 0.7863}
+{"id": "prod-0140", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 1190.5, "response_len": 289.7, "groundedness": 0.8544}
+{"id": "prod-0141", "prompt": "Como faço uma transferência via TED?", "latency_ms": 1436.0, "response_len": 348.4, "groundedness": 0.8292}
+{"id": "prod-0142", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 1546.5, "response_len": 130.3, "groundedness": 0.7363}
+{"id": "prod-0143", "prompt": "Qual a alíquota de IR do CDB acima de 720 dias?", "latency_ms": 427.9, "response_len": 323.2, "groundedness": 0.7794}
+{"id": "prod-0144", "prompt": "como ativo o pix por aproximacao no celular?", "latency_ms": 1718.2, "response_len": 426.9, "groundedness": 0.8043}
+{"id": "prod-0145", "prompt": "o tal do buy now pay later de vcs cobra juros?", "latency_ms": 1099.9, "response_len": 363.7, "groundedness": 0.7166}
+{"id": "prod-0146", "prompt": "consigo antecipar o fgts pelo app novo de vcs?", "latency_ms": 1299.4, "response_len": 408.8, "groundedness": 0.7131}
+{"id": "prod-0147", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 1622.3, "response_len": 381.0, "groundedness": 0.6654}
+{"id": "prod-0148", "prompt": "o tal do buy now pay later de vcs cobra juros?", "latency_ms": 1689.6, "response_len": 382.9, "groundedness": 0.7922}
+{"id": "prod-0149", "prompt": "e a conta global em dolar, ja lancou?", "latency_ms": 995.1, "response_len": 242.7, "groundedness": 0.7155}
+{"id": "prod-0150", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 1517.0, "response_len": 234.0, "groundedness": 0.8325}
+{"id": "prod-0151", "prompt": "Como faço uma transferência via TED?", "latency_ms": 803.3, "response_len": 301.6, "groundedness": 0.7932}
+{"id": "prod-0152", "prompt": "tem como investir em cripto staking pelo banco?", "latency_ms": 2278.1, "response_len": 196.0, "groundedness": 0.9566}
+{"id": "prod-0153", "prompt": "Qual o limite do cartão de crédito Aurora Gold?", "latency_ms": 1359.9, "response_len": 357.0, "groundedness": 0.7942}
+{"id": "prod-0154", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 1477.9, "response_len": 306.2, "groundedness": 0.9545}
+{"id": "prod-0155", "prompt": "aurora cripto tem taxa de custodia? responde rapido pfv", "latency_ms": 1117.4, "response_len": 421.9, "groundedness": 0.7027}
+{"id": "prod-0156", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 1275.9, "response_len": 223.5, "groundedness": 0.8346}
+{"id": "prod-0157", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 1878.1, "response_len": 313.0, "groundedness": 0.7564}
+{"id": "prod-0158", "prompt": "manda ai como funciona o pix parcelado novo", "latency_ms": 854.2, "response_len": 299.4, "groundedness": 0.5889}
+{"id": "prod-0159", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 934.8, "response_len": 340.4, "groundedness": 0.9383}
+{"id": "prod-0160", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 2423.7, "response_len": 267.2, "groundedness": 0.9522}
+{"id": "prod-0161", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 1397.5, "response_len": 306.4, "groundedness": 0.8319}
+{"id": "prod-0162", "prompt": "aurora cripto tem taxa de custodia? responde rapido pfv", "latency_ms": 1324.8, "response_len": 329.9, "groundedness": 0.731}
+{"id": "prod-0163", "prompt": "aurora cripto tem taxa de custodia? responde rapido pfv", "latency_ms": 740.8, "response_len": 181.1, "groundedness": 0.8584}
+{"id": "prod-0164", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 1189.3, "response_len": 266.4, "groundedness": 0.781}
+{"id": "prod-0165", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 1618.0, "response_len": 336.2, "groundedness": 0.7013}
+{"id": "prod-0166", "prompt": "tem como investir em cripto staking pelo banco?", "latency_ms": 1790.5, "response_len": 462.1, "groundedness": 0.8393}
+{"id": "prod-0167", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 1689.5, "response_len": 431.8, "groundedness": 0.9156}
+{"id": "prod-0168", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 1545.6, "response_len": 373.9, "groundedness": 0.8424}
+{"id": "prod-0169", "prompt": "Qual o horário de funcionamento da agência central?", "latency_ms": 861.1, "response_len": 383.1, "groundedness": 0.6173}
+{"id": "prod-0170", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 982.2, "response_len": 437.3, "groundedness": 0.8808}
+{"id": "prod-0171", "prompt": "aurora cripto tem taxa de custodia? responde rapido pfv", "latency_ms": 1895.0, "response_len": 295.5, "groundedness": 0.6417}
+{"id": "prod-0172", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 1203.8, "response_len": 329.2, "groundedness": 0.7895}
+{"id": "prod-0173", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 1753.5, "response_len": 287.5, "groundedness": 0.8222}
+{"id": "prod-0174", "prompt": "como ativo o pix por aproximacao no celular?", "latency_ms": 904.5, "response_len": 360.5, "groundedness": 0.7804}
+{"id": "prod-0175", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 1000.1, "response_len": 298.8, "groundedness": 0.7579}
+{"id": "prod-0176", "prompt": "manda ai como funciona o pix parcelado novo", "latency_ms": 1191.9, "response_len": 479.4, "groundedness": 0.7682}
+{"id": "prod-0177", "prompt": "Quais são as tarifas do pacote de serviços?", "latency_ms": 1202.4, "response_len": 131.2, "groundedness": 0.6727}
+{"id": "prod-0178", "prompt": "e a conta global em dolar, ja lancou?", "latency_ms": 1194.8, "response_len": 258.3, "groundedness": 0.9458}
+{"id": "prod-0179", "prompt": "e a conta global em dolar, ja lancou?", "latency_ms": 1234.0, "response_len": 436.0, "groundedness": 0.7874}
+{"id": "prod-0180", "prompt": "Como emito um boleto de pagamento?", "latency_ms": 1314.9, "response_len": 312.0, "groundedness": 0.7805}
+{"id": "prod-0181", "prompt": "Qual a taxa do CDB do Aurora?", "latency_ms": 1987.5, "response_len": 111.2, "groundedness": 0.5398}
+{"id": "prod-0182", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 1082.7, "response_len": 321.3, "groundedness": 0.8628}
+{"id": "prod-0183", "prompt": "vcs tao com aurora cripto agora? como compro bitcoin no app", "latency_ms": 1489.2, "response_len": 285.4, "groundedness": 0.9023}
+{"id": "prod-0184", "prompt": "quero saber do open finance e portabilidade de salario rapidão", "latency_ms": 1712.1, "response_len": 336.6, "groundedness": 0.8955}
+{"id": "prod-0185", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 1409.1, "response_len": 269.5, "groundedness": 0.8637}
+{"id": "prod-0186", "prompt": "aurora cripto tem taxa de custodia? responde rapido pfv", "latency_ms": 1344.2, "response_len": 320.1, "groundedness": 0.9568}
+{"id": "prod-0187", "prompt": "consigo antecipar o fgts pelo app novo de vcs?", "latency_ms": 319.7, "response_len": 192.4, "groundedness": 0.6376}
+{"id": "prod-0188", "prompt": "consigo antecipar o fgts pelo app novo de vcs?", "latency_ms": 1154.7, "response_len": 297.1, "groundedness": 0.5991}
+{"id": "prod-0189", "prompt": "como ativo o pix por aproximacao no celular?", "latency_ms": 905.9, "response_len": 242.5, "groundedness": 1.0}
+{"id": "prod-0190", "prompt": "tem como investir em cripto staking pelo banco?", "latency_ms": 2020.7, "response_len": 282.9, "groundedness": 0.7364}
+{"id": "prod-0191", "prompt": "Como funciona o rendimento da poupança?", "latency_ms": 840.3, "response_len": 148.3, "groundedness": 0.766}
+{"id": "prod-0192", "prompt": "tem como investir em cripto staking pelo banco?", "latency_ms": 900.9, "response_len": 312.4, "groundedness": 0.588}
+{"id": "prod-0193", "prompt": "Como simulo um empréstimo pessoal?", "latency_ms": 995.2, "response_len": 333.4, "groundedness": 0.8239}
+{"id": "prod-0194", "prompt": "quero saber do open finance e portabilidade de salario rapidão", "latency_ms": 1467.0, "response_len": 201.2, "groundedness": 0.8826}
+{"id": "prod-0195", "prompt": "consigo antecipar o fgts pelo app novo de vcs?", "latency_ms": 979.9, "response_len": 377.0, "groundedness": 0.7787}
+{"id": "prod-0196", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 749.4, "response_len": 291.5, "groundedness": 0.8238}
+{"id": "prod-0197", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 1545.2, "response_len": 307.3, "groundedness": 0.9638}
+{"id": "prod-0198", "prompt": "Quais são as opções de investimento disponíveis?", "latency_ms": 1703.0, "response_len": 296.9, "groundedness": 0.87}
+{"id": "prod-0199", "prompt": "Quais documentos preciso para abrir uma conta?", "latency_ms": 2073.5, "response_len": 496.4, "groundedness": 0.6326}
+{"id": "prod-0200", "prompt": "Como ativo as notificações do aplicativo?", "latency_ms": 929.4, "response_len": 453.6, "groundedness": 0.653}

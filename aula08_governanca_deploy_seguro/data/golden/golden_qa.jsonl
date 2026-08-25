@@ -1,0 +1,8 @@
+{"id": "gold-001", "question": "Qual a taxa do CDB Aurora Prime?", "reference": "O CDB Aurora Prime rende 12% ao ano.", "answerable": true}
+{"id": "gold-002", "question": "Quanto rende a poupança do Aurora?", "reference": "A poupança Aurora rende 0,5% ao mês.", "answerable": true}
+{"id": "gold-003", "question": "Qual a tarifa mensal da conta corrente Aurora?", "reference": "A conta corrente Aurora tem tarifa mensal de R$ 30.", "answerable": true}
+{"id": "gold-004", "question": "Qual a taxa do crédito pessoal do Aurora?", "reference": "O crédito pessoal Aurora tem taxa de 2,5% ao mês.", "answerable": true}
+{"id": "gold-005", "question": "Qual a anuidade do cartão Aurora Gold?", "reference": "A anuidade do cartão Aurora Gold é de R$ 300.", "answerable": true}
+{"id": "gold-006", "question": "Qual a cotação do dólar hoje pelo Aurora?", "reference": "Não encontrei essa informação nos documentos do Aurora.", "answerable": false}
+{"id": "gold-007", "question": "O Aurora oferece consórcio de imóveis?", "reference": "Não encontrei essa informação nos documentos do Aurora.", "answerable": false}
+{"id": "gold-008", "question": "Posso investir em criptomoedas pelo Aurora?", "reference": "Não encontrei essa informação nos documentos do Aurora.", "answerable": false}

@@ -1,0 +1,235 @@
+# ==========================================================================
+# docker-compose.yml — Lab da Aula 08 (vídeo 4 · Capstone)
+# Sobe a arquitetura integrada do Aurora Assist em produção com um comando:
+#   docker compose up -d
+#
+# Pipeline DevSecOps (opcional/pesado, profile `security`):
+#   docker compose --profile security run --rm redteam-ci   # deploy gate ao vivo
+#   docker compose --profile security run --rm aibom-gen     # gera o AIBOM
+#
+# Arquitetura (Doc 04, Figura 5): agent-app (Microsoft Agent Framework analog) com
+# guardrails (Aula 2) + MCP isolado (Aula 3) + observabilidade (Aula 6, Langfuse),
+# RAG servido por qdrant, sob governança (NIST/ISO/EU AI Act). O mcp-server roda
+# em rede INTERNA sem egress (menor privilégio + isolamento).
+#
+# Offline-first: o LLM roda localmente via Ollama. Azure AI Foundry é o caminho de
+# produção documentado no README. Contêineres endurecidos; se sua plataforma não
+# suportar seccomp/read_only (ex.: alguns setups Windows), comente as linhas indicadas.
+# ==========================================================================
+name: aula08-governanca-deploy-seguro
+
+services:
+  # --- LLM local, offline-first ------------------------------------------
+  ollama:
+    image: ollama/ollama:0.3.14
+    container_name: aula08-ollama
+    volumes:
+      - ollama-models:/root/.ollama
+    ports:
+      - "11434:11434"
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- Postgres: backend de persistência do Langfuse ---------------------
+  postgres:
+    image: postgres:16.4-bookworm
+    container_name: aula08-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-langfuse}
+      POSTGRES_USER: ${POSTGRES_USER:-langfuse}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-langfuse-dev-only}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-langfuse} -d ${POSTGRES_DB:-langfuse}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- Langfuse: tracing por step (observabilidade — Aula 06/Doc 04, §9) -
+  langfuse:
+    image: langfuse/langfuse:2
+    container_name: aula08-langfuse
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-langfuse}:${POSTGRES_PASSWORD:-langfuse-dev-only}@postgres:5432/${POSTGRES_DB:-langfuse}
+      NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:-changeme-nextauth-dev-only}
+      SALT: ${LANGFUSE_SALT:-changeme-salt-dev-only}
+      TELEMETRY_ENABLED: "false"
+      LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES: "false"
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "sh", "-c", "wget -q --spider http://127.0.0.1:3000/api/public/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 40s
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- qdrant: vector store de produção para o RAG (Doc 04, §9) ----------
+  # O agent-app é offline-first (retriever in-memory); em produção o RAG usa qdrant.
+  qdrant:
+    image: qdrant/qdrant:v1.11.3
+    container_name: aula08-qdrant
+    volumes:
+      - qdrant-data:/qdrant/storage
+    ports:
+      - "6333:6333"
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- mcp-server: ferramentas MCP ISOLADAS (Aula 03) --------------------
+  # Rede INTERNA sem egress: mesmo comprometido, não alcança a internet.
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: aurora-assist-agent:aula08
+    container_name: aula08-mcp-server
+    command: ["uvicorn", "app.mcp_tools:mcp_app", "--host", "0.0.0.0", "--port", "8100"]
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    # ---- Hardening ----
+    user: "10001:10001"
+    read_only: true                       # comente se sua plataforma reclamar
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+      - seccomp=./configs/seccomp.json    # comente para usar o perfil padrão
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8100/health', timeout=3).status==200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+    networks: [internal]                  # SEM egress para a internet
+
+  # --- agent-app: Aurora Assist v3.0 (agente em produção) ----------------
+  # Guardrails (Aula 2) + MCP isolado (Aula 3) + observabilidade (Aula 6).
+  # AGENT_GUARDRAILS_ENABLED começa false (agente ingênuo) para o Lab medir o
+  # deploy gate reprovando; ligue para true e observe a promoção.
+  agent-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: aurora-assist-agent:aula08
+    container_name: aula08-agent-app
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      LLM_BACKEND: ${LLM_BACKEND:-groq}
+      GROQ_BASE_URL: ${GROQ_BASE_URL:-https://api.groq.com/openai/v1}
+      GROQ_MODEL: ${GROQ_MODEL:-openai/gpt-oss-20b}
+      GROQ_MIN_INTERVAL_SECONDS: ${GROQ_MIN_INTERVAL_SECONDS:-1}
+      OLLAMA_BASE_URL: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.1:8b}
+      MODEL_VERSION: ${MODEL_VERSION:-aurora-assist-3.0.0}
+      AGENT_GUARDRAILS_ENABLED: ${AGENT_GUARDRAILS_ENABLED:-false}
+      MCP_ENABLED: ${MCP_ENABLED:-true}
+      DEPLOYMENT_STRATEGY: ${DEPLOYMENT_STRATEGY:-canary}
+      CANARY_PERCENT: ${CANARY_PERCENT:-5}
+      LANGFUSE_ENABLED: ${LANGFUSE_ENABLED:-false}
+      LANGFUSE_HOST: http://langfuse:3000
+      SLO_PATH: configs/slo.yaml
+      THRESHOLDS_PATH: configs/thresholds.yaml
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8000:8000"
+    depends_on:
+      ollama:
+        condition: service_healthy
+    # ---- Hardening do contêiner ----
+    user: "10001:10001"
+    read_only: true                       # comente se sua plataforma reclamar
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+      - seccomp=./configs/seccomp.json    # comente para usar o perfil padrão
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    volumes:
+      - ./data:/app/data:ro               # datasets sintéticos (somente leitura)
+      - ./reports:/app/reports:rw
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3).status==200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+    networks: [aurora, internal]          # fala com ollama (aurora) e mcp-server (internal)
+
+  # --- redteam-ci: deploy gate DevSecOps ao vivo (opt-in/pesado) ---------
+  redteam-ci:
+    build:
+      context: .
+      dockerfile: Dockerfile.security
+    image: aurora-redteam-ci:aula08
+    container_name: aula08-redteam-ci
+    profiles: [security]
+    environment:
+      TARGET_API_URL: http://agent-app:8000
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    depends_on:
+      agent-app:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    volumes:
+      - ./reports:/work/reports:rw
+      - ./data:/work/data:ro
+      - ./configs:/work/configs:ro
+    networks: [aurora]
+
+  # --- aibom-gen: geração do AIBOM (CycloneDX ML-BOM) no pipeline --------
+  aibom-gen:
+    build:
+      context: .
+      dockerfile: Dockerfile.security
+    image: aurora-redteam-ci:aula08
+    container_name: aula08-aibom-gen
+    profiles: [security]
+    command: ["python", "-m", "app.aibom", "--output", "/work/reports/aibom.cdx.json"]
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    volumes:
+      - ./reports:/work/reports:rw
+    networks: [aurora]
+
+volumes:
+  ollama-models:
+  postgres-data:
+  qdrant-data:
+
+networks:
+  aurora:
+    driver: bridge
+  internal:
+    driver: bridge
+    internal: true      # sem rota para a internet — isola o mcp-server

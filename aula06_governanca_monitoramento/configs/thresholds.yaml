@@ -1,0 +1,97 @@
+# ==========================================================================
+# thresholds.yaml — Parâmetros de monitoramento contínuo (Aula 06)
+#
+# Materializa decisões de engenharia do Doc 04: limiares de DETECÇÃO DE DRIFT
+# (§"Detecção estatística de drift"), MODELO DE CUSTO por token (§"token
+# economics") e políticas de CACHING SEMÂNTICO / MODEL ROUTING. Montado nos
+# serviços em modo somente-leitura e ajustável SEM rebuild.
+# ==========================================================================
+
+# --- Detecção de drift (Doc 04, §Drift — KS, PSI, MMD, Wasserstein) -----------
+# A interpretação é OPERACIONAL, não puramente estatística: um sinal isolado
+# indica INVESTIGAÇÃO; múltiplos sinais convergentes abrem incidente (Doc 04).
+drift:
+  # Teste KS de duas amostras (métricas escalares: comprimento, groundedness...).
+  # p-valor abaixo de alpha => distribuições diferem significativamente.
+  ks:
+    alpha: 0.05
+  # Population Stability Index (crédito). Convenção do setor financeiro:
+  psi:
+    bins: 10
+    moderate: 0.10        # 0.10-0.25 => deriva moderada (observar)
+    severe: 0.25          # > 0.25    => deriva severa (ação imediata)
+  # Maximum Mean Discrepancy (RBF) sobre embeddings de prompts (alta dimensão).
+  mmd:
+    gamma: 1.0            # largura do kernel RBF
+    threshold: 0.010      # MMD^2 acima disto sinaliza drift semântico de prompt
+    permutations: 200     # teste de permutação para o p-valor empírico
+  # Distância de Wasserstein (1-D): deslocamentos graduais de massa.
+  wasserstein:
+    threshold: 0.15       # normalizada; acima disto sinaliza deriva de resposta
+  # Nº mínimo de sinais convergentes para elevar de "observar" a "incidente".
+  min_converging_signals: 2
+
+# --- Modelo de custo por token (Doc 04, §"token economics") -------------------
+# Em produção cada token custa dinheiro; o custo entra no span gen_ai.* e nos
+# dashboards junto com qualidade e segurança. Preços por 1K tokens (USD).
+cost:
+  input_per_1k: 0.005
+  output_per_1k: 0.015
+  # Tabela por modelo (model routing): simples -> barato; complexo -> caro.
+  models:
+    "aurora-mini":
+      input_per_1k: 0.0005
+      output_per_1k: 0.0015
+    "aurora-pro":
+      input_per_1k: 0.005
+      output_per_1k: 0.015
+
+# --- Caching semântico (Doc 04, §"token economics") ---------------------------
+# Reutiliza respostas para perguntas SIMILARES (cosseno >= threshold), zerando
+# tokens/custo do hit. Reduz TCO sem sacrificar qualidade em perguntas repetidas.
+semantic_cache:
+  enabled: true
+  threshold: 0.92         # similaridade de cosseno mínima para HIT
+  max_entries: 512
+
+# --- Model routing (Doc 04, §"token economics") -------------------------------
+# Pergunta simples (horário, tarifa) vai ao fluxo barato; dúvida complexa
+# (renegociação, crédito) exige modelo mais capaz e maior escrutínio de segurança.
+routing:
+  enabled: true
+  # Heurística de complexidade: nº de tokens e termos "de alto escrutínio".
+  complex_min_tokens: 24
+  complex_terms:
+    - renegocia
+    - crédito
+    - credito
+    - empréstimo
+    - emprestimo
+    - financiamento
+    - investimento
+    - fraude
+    - reclamação
+    - reclamacao
+  cheap_model: "aurora-mini"
+  capable_model: "aurora-pro"
+
+# --- Groundedness (proxy offline; Doc 04, §"métrica de qualidade") ------------
+# Sem juiz neural (Aula 07), usamos sobreposição léxica resposta<->contexto RAG
+# como PROXY didático de fundamentação. Abaixo do mínimo => resposta pouco
+# fundamentada (possível alucinação).
+groundedness:
+  min_overlap: 0.20       # fração mínima de tokens da resposta ancorados no contexto
+  regulated_terms:        # perguntas "reguladas" exigem groundedness alta (SLO)
+    - taxa
+    - juros
+    - cdb
+    - contrato
+    - tarifa
+    - rendimento
+
+# --- Minimização de PII na TELEMETRIA (Doc 04, §Obs. — privacidade) -----------
+# "A observabilidade também deve preservar privacidade": nunca logar PII em claro.
+telemetry:
+  minimize_pii: true
+  # Só metadados nos spans/logs; o texto do prompt é truncado e mascarado.
+  max_prompt_chars_in_span: 120

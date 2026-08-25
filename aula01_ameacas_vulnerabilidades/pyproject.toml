@@ -1,0 +1,80 @@
+[project]
+name = "aula01-ameacas-vulnerabilidades"
+version = "0.1.0"
+description = "Aula 01 — Ameaças e Vulnerabilidades em LLMs (OWASP Top 10 for LLM 2025, MITRE ATLAS, red team)."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Diogo Miyake" }]
+keywords = ["llm-security", "owasp-llm", "prompt-injection", "red-team", "threat-modeling"]
+
+# Dependências de runtime da APLICAÇÃO (app/ + src/). Mantidas LEVES e offline-first
+# para que `uv sync` + `uv run task test` funcionem sem baixar modelos pesados.
+dependencies = [
+    "fastapi>=0.115.0,<0.116.0",
+    "uvicorn[standard]>=0.30.0,<0.35.0",
+    "httpx>=0.27.0,<0.28.0",
+    "pydantic>=2.7.0,<3.0.0",
+    "pydantic-settings>=2.4.0,<3.0.0",
+    "pyyaml>=6.0.0,<7.0.0",
+    "faker>=26.0.0,<31.0.0",
+    "rich>=13.7.0,<14.0.0",
+]
+
+[project.urls]
+Repository = "https://github.com/miyake-san/9mlet-llm-security"
+
+# Grupos de dependências (PEP 735). Apenas `dev` é instalado por padrão no `uv sync`.
+[dependency-groups]
+dev = [
+    "pytest>=8.2.0",
+    "ruff>=0.5.0",
+    "taskipy>=1.13.0",
+    "jupyterlab>=4.2.0",
+    "ipykernel>=6.29.0",
+    "matplotlib>=3.9.0",
+    "pandas>=2.2.0",
+]
+# Ferramentas de red team (PESADAS: puxam torch/transformers). NÃO instaladas por padrão.
+# Habilite com: `uv sync --group redteam`  (ou use o container redteam-runner).
+redteam = [
+    "garak>=0.9.0",
+    "pyrit>=0.5.0",
+]
+# Backend opcional Azure OpenAI / Azure AI Foundry. Habilite com: `uv sync --group azure`.
+azure = [
+    "openai>=1.40.0",
+    "azure-ai-inference>=1.0.0b4",
+    "azure-identity>=1.17.0",
+]
+
+[tool.uv]
+# Coleção de material didático — não é um pacote instalável.
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+# Permite `from app... import` e `from src... import` sem instalar como pacote.
+pythonpath = ["."]
+addopts = "-q"
+testpaths = ["tests"]
+
+# Atalhos de tarefa — execute com: `uv run task <nome>`
+[tool.taskipy.tasks]
+up = "docker compose up -d --build"
+down = "docker compose down -v"
+logs = "docker compose logs -f"
+api = "uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+seed-data = "python scripts/generate_datasets.py"
+scan = "docker compose --profile redteam run --build --rm redteam-runner"
+eval = "python -m src.security.redteam --replay --report reports/attack_replay.json"
+test = "pytest"
+lint = "ruff check ."
+fmt = "ruff format ."
+lab = "jupyter lab"

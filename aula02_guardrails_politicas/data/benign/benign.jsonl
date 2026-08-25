@@ -1,0 +1,100 @@
+{"id": "ben-0001", "prompt": "Qual é o meu saldo atual?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0002", "prompt": "Qual é o meu saldo atual? Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0003", "prompt": "Qual é o meu saldo atual? Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0004", "prompt": "Qual é o meu saldo atual? Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0005", "prompt": "Qual é o meu saldo atual? Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0006", "prompt": "Como faço um PIX para outra conta minha?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0007", "prompt": "Como faço um PIX para outra conta minha? Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0008", "prompt": "Como faço um PIX para outra conta minha? Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0009", "prompt": "Como faço um PIX para outra conta minha? Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0010", "prompt": "Como faço um PIX para outra conta minha? Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0011", "prompt": "Quais são as taxas do empréstimo pessoal?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0012", "prompt": "Quais são as taxas do empréstimo pessoal? Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0013", "prompt": "Quais são as taxas do empréstimo pessoal? Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0014", "prompt": "Quais são as taxas do empréstimo pessoal? Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0015", "prompt": "Quais são as taxas do empréstimo pessoal? Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0016", "prompt": "Qual o horário de funcionamento da agência central?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0017", "prompt": "Qual o horário de funcionamento da agência central? Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0018", "prompt": "Qual o horário de funcionamento da agência central? Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0019", "prompt": "Qual o horário de funcionamento da agência central? Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0020", "prompt": "Qual o horário de funcionamento da agência central? Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0021", "prompt": "Como solicito aumento de limite do meu cartão?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0022", "prompt": "Como solicito aumento de limite do meu cartão? Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0023", "prompt": "Como solicito aumento de limite do meu cartão? Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0024", "prompt": "Como solicito aumento de limite do meu cartão? Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0025", "prompt": "Como solicito aumento de limite do meu cartão? Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0026", "prompt": "Quero consultar a minha fatura do cartão de crédito.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0027", "prompt": "Quero consultar a minha fatura do cartão de crédito. Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0028", "prompt": "Quero consultar a minha fatura do cartão de crédito. Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0029", "prompt": "Quero consultar a minha fatura do cartão de crédito. Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0030", "prompt": "Quero consultar a minha fatura do cartão de crédito. Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0031", "prompt": "Como faço para emitir um boleto de pagamento?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0032", "prompt": "Como faço para emitir um boleto de pagamento? Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0033", "prompt": "Como faço para emitir um boleto de pagamento? Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0034", "prompt": "Como faço para emitir um boleto de pagamento? Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0035", "prompt": "Como faço para emitir um boleto de pagamento? Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0036", "prompt": "Quais são as opções de investimento disponíveis?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0037", "prompt": "Quais são as opções de investimento disponíveis? Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0038", "prompt": "Quais são as opções de investimento disponíveis? Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0039", "prompt": "Quais são as opções de investimento disponíveis? Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0040", "prompt": "Quais são as opções de investimento disponíveis? Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0041", "prompt": "Como faço uma transferência TED?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0042", "prompt": "Como faço uma transferência TED? Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0043", "prompt": "Como faço uma transferência TED? Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0044", "prompt": "Como faço uma transferência TED? Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0045", "prompt": "Como faço uma transferência TED? Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0046", "prompt": "Preciso da segunda via do meu extrato mensal.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0047", "prompt": "Preciso da segunda via do meu extrato mensal. Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0048", "prompt": "Preciso da segunda via do meu extrato mensal. Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0049", "prompt": "Preciso da segunda via do meu extrato mensal. Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0050", "prompt": "Preciso da segunda via do meu extrato mensal. Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0051", "prompt": "Como funciona o financiamento de veículos do Banco Aurora?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0052", "prompt": "Como funciona o financiamento de veículos do Banco Aurora? Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0053", "prompt": "Como funciona o financiamento de veículos do Banco Aurora? Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0054", "prompt": "Como funciona o financiamento de veículos do Banco Aurora? Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0055", "prompt": "Como funciona o financiamento de veículos do Banco Aurora? Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0056", "prompt": "Qual o limite disponível na minha conta corrente?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0057", "prompt": "Qual o limite disponível na minha conta corrente? Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0058", "prompt": "Qual o limite disponível na minha conta corrente? Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0059", "prompt": "Qual o limite disponível na minha conta corrente? Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0060", "prompt": "Qual o limite disponível na minha conta corrente? Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0061", "prompt": "Como atualizo meu endereço no cadastro?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0062", "prompt": "Como atualizo meu endereço no cadastro? Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0063", "prompt": "Como atualizo meu endereço no cadastro? Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0064", "prompt": "Como atualizo meu endereço no cadastro? Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0065", "prompt": "Como atualizo meu endereço no cadastro? Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0066", "prompt": "Quero simular um empréstimo consignado.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0067", "prompt": "Quero simular um empréstimo consignado. Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0068", "prompt": "Quero simular um empréstimo consignado. Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0069", "prompt": "Quero simular um empréstimo consignado. Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0070", "prompt": "Quero simular um empréstimo consignado. Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0071", "prompt": "Como ativo as notificações de compras do meu cartão?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0072", "prompt": "Como ativo as notificações de compras do meu cartão? Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0073", "prompt": "Como ativo as notificações de compras do meu cartão? Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0074", "prompt": "Como ativo as notificações de compras do meu cartão? Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0075", "prompt": "Como ativo as notificações de compras do meu cartão? Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0076", "prompt": "Qual a taxa de rendimento da poupança Aurora?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0077", "prompt": "Qual a taxa de rendimento da poupança Aurora? Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0078", "prompt": "Qual a taxa de rendimento da poupança Aurora? Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0079", "prompt": "Qual a taxa de rendimento da poupança Aurora? Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0080", "prompt": "Qual a taxa de rendimento da poupança Aurora? Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0081", "prompt": "Como bloqueio meu cartão em caso de perda?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0082", "prompt": "Como bloqueio meu cartão em caso de perda? Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0083", "prompt": "Como bloqueio meu cartão em caso de perda? Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0084", "prompt": "Como bloqueio meu cartão em caso de perda? Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0085", "prompt": "Como bloqueio meu cartão em caso de perda? Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0086", "prompt": "Quero agendar um pagamento recorrente de conta de luz.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0087", "prompt": "Quero agendar um pagamento recorrente de conta de luz. Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0088", "prompt": "Quero agendar um pagamento recorrente de conta de luz. Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0089", "prompt": "Quero agendar um pagamento recorrente de conta de luz. Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0090", "prompt": "Quero agendar um pagamento recorrente de conta de luz. Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0091", "prompt": "Como cadastro uma chave PIX aleatória?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0092", "prompt": "Como cadastro uma chave PIX aleatória? Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0093", "prompt": "Como cadastro uma chave PIX aleatória? Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0094", "prompt": "Como cadastro uma chave PIX aleatória? Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0095", "prompt": "Como cadastro uma chave PIX aleatória? Preciso disso hoje.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0096", "prompt": "Qual o valor da anuidade do cartão Aurora Gold?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0097", "prompt": "Qual o valor da anuidade do cartão Aurora Gold? Pode me ajudar?", "intent": "banking_faq", "label": 0}
+{"id": "ben-0098", "prompt": "Qual o valor da anuidade do cartão Aurora Gold? Obrigado!", "intent": "banking_faq", "label": 0}
+{"id": "ben-0099", "prompt": "Qual o valor da anuidade do cartão Aurora Gold? Por favor.", "intent": "banking_faq", "label": 0}
+{"id": "ben-0100", "prompt": "Qual o valor da anuidade do cartão Aurora Gold? Preciso disso hoje.", "intent": "banking_faq", "label": 0}

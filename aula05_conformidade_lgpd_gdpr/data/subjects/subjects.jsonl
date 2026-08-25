@@ -1,0 +1,12 @@
+{"subject_id": "cli-90001", "name": "Brenda Alves", "consent": {"consulta_saldo": true, "faq_produtos": true, "treino_modelo": false, "recomendacao_credito": true}, "terms_version": "2026-06-v3"}
+{"subject_id": "cli-90002", "name": "Sra. Isabelly Câmara", "consent": {"consulta_saldo": true, "faq_produtos": true, "treino_modelo": true, "recomendacao_credito": true}, "terms_version": "2026-06-v3"}
+{"subject_id": "cli-90003", "name": "Cauã Rocha", "consent": {"consulta_saldo": true, "faq_produtos": true, "treino_modelo": false, "recomendacao_credito": false}, "terms_version": "2026-06-v3"}
+{"subject_id": "cli-90004", "name": "Dra. Aurora Pastor", "consent": {"consulta_saldo": true, "faq_produtos": true, "treino_modelo": false, "recomendacao_credito": true}, "terms_version": "2026-06-v3"}
+{"subject_id": "cli-90005", "name": "Ana Beatriz Alves", "consent": {"consulta_saldo": true, "faq_produtos": true, "treino_modelo": false, "recomendacao_credito": true}, "terms_version": "2026-06-v3"}
+{"subject_id": "cli-90006", "name": "Henrique da Conceição", "consent": {"consulta_saldo": true, "faq_produtos": true, "treino_modelo": true, "recomendacao_credito": false}, "terms_version": "2026-06-v3"}
+{"subject_id": "cli-90007", "name": "Amanda Novais", "consent": {"consulta_saldo": true, "faq_produtos": true, "treino_modelo": true, "recomendacao_credito": true}, "terms_version": "2026-06-v3"}
+{"subject_id": "cli-90008", "name": "Yago Leão", "consent": {"consulta_saldo": true, "faq_produtos": true, "treino_modelo": false, "recomendacao_credito": false}, "terms_version": "2026-06-v3"}
+{"subject_id": "cli-90009", "name": "Pietro Pastor", "consent": {"consulta_saldo": true, "faq_produtos": true, "treino_modelo": true, "recomendacao_credito": false}, "terms_version": "2026-06-v3"}
+{"subject_id": "cli-90010", "name": "André Teixeira", "consent": {"consulta_saldo": true, "faq_produtos": true, "treino_modelo": false, "recomendacao_credito": true}, "terms_version": "2026-06-v3"}
+{"subject_id": "cli-90011", "name": "Otávio Fernandes", "consent": {"consulta_saldo": true, "faq_produtos": true, "treino_modelo": false, "recomendacao_credito": false}, "terms_version": "2026-06-v3"}
+{"subject_id": "cli-90012", "name": "Eduardo Cunha", "consent": {"consulta_saldo": true, "faq_produtos": true, "treino_modelo": true, "recomendacao_credito": true}, "terms_version": "2026-06-v3"}

@@ -1,0 +1,31 @@
+{
+  "comment": "Snippet 3 do Documento 04 (Aula 08, secao 'Governanca como codigo com Azure Policy'). Materializa a governanca continua (secao 10): impede o deploy de contas Azure AI Services / Cognitive Services sem filtro de conteudo (guardrails de moderacao). Regra como codigo, integravel ao Microsoft Purview AI Hub. Referencia: Microsoft (2025). Azure Policy.",
+  "properties": {
+    "displayName": "Aurora Assist — negar deploy de IA sem content filter (guardrails)",
+    "description": "Bloqueia recursos de IA sem filtro de conteudo habilitado, materializando a governanca continua da Aula 08 (Doc 04, secao 10). Nenhum modelo entra em producao sem guardrails de moderacao.",
+    "mode": "All",
+    "policyType": "Custom",
+    "metadata": {
+      "category": "AI Governance",
+      "source": "9mlet-llm-security/aula08 (Doc 04, Snippet 3)",
+      "frameworks": ["NIST AI RMF: GOVERN/MANAGE", "ISO/IEC 42001: A.9", "EU AI Act: deployer"]
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.CognitiveServices/accounts"
+          },
+          {
+            "field": "Microsoft.CognitiveServices/accounts/contentFilter",
+            "exists": "false"
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}

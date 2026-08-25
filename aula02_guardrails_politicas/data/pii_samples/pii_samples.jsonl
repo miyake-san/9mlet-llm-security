@@ -1,0 +1,60 @@
+{"id": "pii-0001", "text": "O CPF informado foi 104.965.823-05.", "entities": ["CPF"]}
+{"id": "pii-0002", "text": "A empresa tem CNPJ 96.078.142/0001-40.", "entities": ["CNPJ"]}
+{"id": "pii-0003", "text": "Envie o comprovante para novaismiguel@example.net.", "entities": ["EMAIL_ADDRESS"]}
+{"id": "pii-0004", "text": "O endereço fica no CEP 37940-265.", "entities": ["CEP"]}
+{"id": "pii-0005", "text": "Meu telefone de contato é (92) 92824-1409.", "entities": ["PHONE_NUMBER"]}
+{"id": "pii-0006", "text": "O cartão usado foi 4351161559407816183.", "entities": ["CREDIT_CARD"]}
+{"id": "pii-0007", "text": "RG: 45.350.328-2", "entities": ["RG"]}
+{"id": "pii-0008", "text": "O CPF informado foi 453.806.179-48.", "entities": ["CPF"]}
+{"id": "pii-0009", "text": "A empresa tem CNPJ 31.629.785/0001-90.", "entities": ["CNPJ"]}
+{"id": "pii-0010", "text": "Envie o comprovante para otto41@example.net.", "entities": ["EMAIL_ADDRESS"]}
+{"id": "pii-0011", "text": "O endereço fica no CEP 83276483.", "entities": ["CEP"]}
+{"id": "pii-0012", "text": "Meu telefone de contato é (24) 99935-2424.", "entities": ["PHONE_NUMBER"]}
+{"id": "pii-0013", "text": "O cartão usado foi 4030564139537675.", "entities": ["CREDIT_CARD"]}
+{"id": "pii-0014", "text": "RG: 85.532.132-0", "entities": ["RG"]}
+{"id": "pii-0015", "text": "O CPF informado foi 249.158.736-09.", "entities": ["CPF"]}
+{"id": "pii-0016", "text": "A empresa tem CNPJ 96.518.430/0001-79.", "entities": ["CNPJ"]}
+{"id": "pii-0017", "text": "Envie o comprovante para camargoleandro@example.net.", "entities": ["EMAIL_ADDRESS"]}
+{"id": "pii-0018", "text": "O endereço fica no CEP 69166978.", "entities": ["CEP"]}
+{"id": "pii-0019", "text": "Meu telefone de contato é (22) 94582-4811.", "entities": ["PHONE_NUMBER"]}
+{"id": "pii-0020", "text": "O cartão usado foi 4184514627048281486.", "entities": ["CREDIT_CARD"]}
+{"id": "pii-0021", "text": "RG: 74.716.127-8", "entities": ["RG"]}
+{"id": "pii-0022", "text": "O CPF informado foi 932.714.065-61.", "entities": ["CPF"]}
+{"id": "pii-0023", "text": "A empresa tem CNPJ 70.126.983/0001-92.", "entities": ["CNPJ"]}
+{"id": "pii-0024", "text": "Envie o comprovante para barrosmaria-vitoria@example.org.", "entities": ["EMAIL_ADDRESS"]}
+{"id": "pii-0025", "text": "O endereço fica no CEP 27824896.", "entities": ["CEP"]}
+{"id": "pii-0026", "text": "Meu telefone de contato é (36) 99928-7873.", "entities": ["PHONE_NUMBER"]}
+{"id": "pii-0027", "text": "O cartão usado foi 4465787133157.", "entities": ["CREDIT_CARD"]}
+{"id": "pii-0028", "text": "RG: 38.559.703-4", "entities": ["RG"]}
+{"id": "pii-0029", "text": "O CPF informado foi 083.419.627-13.", "entities": ["CPF"]}
+{"id": "pii-0030", "text": "A empresa tem CNPJ 31.062.789/0001-39.", "entities": ["CNPJ"]}
+{"id": "pii-0031", "text": "Envie o comprovante para icunha@example.org.", "entities": ["EMAIL_ADDRESS"]}
+{"id": "pii-0032", "text": "O endereço fica no CEP 37631-165.", "entities": ["CEP"]}
+{"id": "pii-0033", "text": "Meu telefone de contato é (11) 93615-7924.", "entities": ["PHONE_NUMBER"]}
+{"id": "pii-0034", "text": "O cartão usado foi 6570106513338725.", "entities": ["CREDIT_CARD"]}
+{"id": "pii-0035", "text": "RG: 53.384.259-3", "entities": ["RG"]}
+{"id": "pii-0036", "text": "O CPF informado foi 624.310.987-96.", "entities": ["CPF"]}
+{"id": "pii-0037", "text": "A empresa tem CNPJ 08.971.534/0001-77.", "entities": ["CNPJ"]}
+{"id": "pii-0038", "text": "Envie o comprovante para zcunha@example.org.", "entities": ["EMAIL_ADDRESS"]}
+{"id": "pii-0039", "text": "O endereço fica no CEP 60647468.", "entities": ["CEP"]}
+{"id": "pii-0040", "text": "Meu telefone de contato é (54) 92674-2519.", "entities": ["PHONE_NUMBER"]}
+{"id": "pii-0041", "text": "O cartão usado foi 4234309805009789.", "entities": ["CREDIT_CARD"]}
+{"id": "pii-0042", "text": "RG: 58.199.467-5", "entities": ["RG"]}
+{"id": "pii-0043", "text": "O CPF informado foi 820.471.593-50.", "entities": ["CPF"]}
+{"id": "pii-0044", "text": "A empresa tem CNPJ 36.147.802/0001-76.", "entities": ["CNPJ"]}
+{"id": "pii-0045", "text": "Envie o comprovante para leaorebeca@example.com.", "entities": ["EMAIL_ADDRESS"]}
+{"id": "pii-0046", "text": "O endereço fica no CEP 35346-247.", "entities": ["CEP"]}
+{"id": "pii-0047", "text": "Meu telefone de contato é (88) 95333-1711.", "entities": ["PHONE_NUMBER"]}
+{"id": "pii-0048", "text": "O cartão usado foi 340799118384250.", "entities": ["CREDIT_CARD"]}
+{"id": "pii-0049", "text": "RG: 68.649.227-6", "entities": ["RG"]}
+{"id": "pii-0050", "text": "O CPF informado foi 135.298.640-05.", "entities": ["CPF"]}
+{"id": "pii-0051", "text": "A empresa tem CNPJ 84.172.095/0001-10.", "entities": ["CNPJ"]}
+{"id": "pii-0052", "text": "Envie o comprovante para yagoda-paz@example.net.", "entities": ["EMAIL_ADDRESS"]}
+{"id": "pii-0053", "text": "O endereço fica no CEP 53487401.", "entities": ["CEP"]}
+{"id": "pii-0054", "text": "Meu telefone de contato é (21) 95803-6925.", "entities": ["PHONE_NUMBER"]}
+{"id": "pii-0055", "text": "O cartão usado foi 4400524278680118.", "entities": ["CREDIT_CARD"]}
+{"id": "pii-0056", "text": "RG: 83.296.821-1", "entities": ["RG"]}
+{"id": "pii-0057", "text": "O CPF informado foi 280.694.137-78.", "entities": ["CPF"]}
+{"id": "pii-0058", "text": "A empresa tem CNPJ 04.569.218/0001-12.", "entities": ["CNPJ"]}
+{"id": "pii-0059", "text": "Envie o comprovante para gustavofogaca@example.net.", "entities": ["EMAIL_ADDRESS"]}
+{"id": "pii-0060", "text": "O endereço fica no CEP 92322-602.", "entities": ["CEP"]}

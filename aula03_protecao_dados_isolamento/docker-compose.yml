@@ -1,0 +1,189 @@
+# ==========================================================================
+# docker-compose.yml — Lab da Aula 03 (vídeo 4)
+# Pipeline Zero Trust de proteção de dados do Aurora Assist. Um comando:
+#   docker compose up -d
+#
+#   Cliente ─▶ rag-api (8000) ──ingress──▶ presidio-analyzer/anonymizer (3000)
+#              [Aurora Assist]  ──LLM─────▶ ollama (11434)
+#                               ──tools───▶ mcp-server (8090)  [rede INTERNA]
+#                               ──egress──▶ (reidrata do cofre de tokens)
+#
+# Doc 04, §2/§10/§12: menor privilégio FORA do modelo (contêiner + rede).
+# O `mcp-server` NÃO publica portas e vive numa rede `internal: true` — mesmo
+# comprometido, não alcança a internet nem serviços fora do seu escopo.
+#
+# Se sua plataforma não suportar seccomp/read_only (ex.: alguns setups Windows),
+# comente as linhas indicadas nas âncoras de hardening.
+# ==========================================================================
+name: aula03-protecao-dados
+
+# --- Hardening FORTE: aplicado às NOSSAS imagens (rag-api, mcp-server) ------
+x-app-hardening: &app_hardening
+  user: "10001:10001"
+  read_only: true                         # comente se sua plataforma reclamar
+  cap_drop: [ALL]
+  security_opt:
+    - no-new-privileges:true
+    - seccomp=./configs/seccomp.json      # comente para usar o perfil padrão
+  tmpfs:
+    - /tmp:size=64m,mode=1777
+
+# --- Hardening LEVE: imagens oficiais (Presidio) que carregam modelos --------
+# Não forçamos user/read_only (a imagem gerencia o próprio usuário e escreve
+# cache do spaCy), mas ainda dropamos capacidades e proibimos escalonamento.
+x-svc-hardening: &svc_hardening
+  cap_drop: [ALL]
+  security_opt:
+    - no-new-privileges:true
+  tmpfs:
+    - /tmp:size=256m,mode=1777
+
+services:
+  # --- LLM local, offline-first (vê apenas TOKENS, nunca PII bruta) -------
+  ollama:
+    image: ollama/ollama:0.3.14
+    container_name: aula03-ollama
+    volumes:
+      - ollama-models:/root/.ollama
+    ports:
+      - "11434:11434"
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- Presidio Analyzer: detecção de PII (imagem oficial MCR) -------------
+  presidio-analyzer:
+    # Pinado por tag; sobreponha com PRESIDIO_TAG no .env (ou fixe por digest).
+    image: mcr.microsoft.com/presidio-analyzer:${PRESIDIO_TAG:-2.2.355}
+    container_name: aula03-presidio-analyzer
+    ports:
+      - "5002:3000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:3000/health', timeout=3).status==200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+    <<: *svc_hardening
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- Presidio Anonymizer: operadores de anonimização (imagem oficial) ---
+  presidio-anonymizer:
+    image: mcr.microsoft.com/presidio-anonymizer:${PRESIDIO_TAG:-2.2.355}
+    container_name: aula03-presidio-anonymizer
+    ports:
+      - "5001:3000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:3000/health', timeout=3).status==200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    <<: *svc_hardening
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- Ferramentas MCP ISOLADAS (somente leitura) — rede interna, sem egress
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: aurora-assist-zerotrust:aula03
+    container_name: aula03-mcp
+    command: ["uvicorn", "app.mcp_server:app", "--host", "0.0.0.0", "--port", "8090"]
+    env_file: .env
+    environment:
+      APP_ROLE: mcp
+      APP_PORT: "8090"
+      MCP_CAPABILITY_SECRET: ${MCP_CAPABILITY_SECRET:-troque-este-segredo-de-capacidade}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    # SEM `ports:` — o servidor de ferramentas só é alcançável pela rede interna.
+    <<: *app_hardening
+    volumes:
+      - ./data:/app/data:ro               # contas sintéticas (somente leitura)
+      - ./configs:/app/configs:ro         # tool_policy (escopos mínimos) ajustável
+      - ./reports:/app/reports:rw         # trilha de auditoria das chamadas
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8090/health', timeout=3).status==200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+    networks: [tools-internal]            # <-- APENAS rede interna (sem internet)
+
+  # --- Aurora Assist: orquestra ingress → LLM → tools → egress ------------
+  rag-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: aurora-assist-zerotrust:aula03
+    container_name: aula03-rag
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    env_file: .env
+    environment:
+      APP_ROLE: rag
+      APP_PORT: "8000"
+      LLM_BACKEND: ${LLM_BACKEND:-groq}
+      GROQ_BASE_URL: ${GROQ_BASE_URL:-https://api.groq.com/openai/v1}
+      GROQ_MODEL: ${GROQ_MODEL:-openai/gpt-oss-20b}
+      GROQ_MIN_INTERVAL_SECONDS: ${GROQ_MIN_INTERVAL_SECONDS:-1}
+      OLLAMA_BASE_URL: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.1:8b}
+      # Ingress/egress de PII via serviços Presidio (produção do lab).
+      PRESIDIO_MODE: ${PRESIDIO_MODE:-http}
+      PRESIDIO_ANALYZER_URL: http://presidio-analyzer:3000
+      PRESIDIO_ANONYMIZER_URL: http://presidio-anonymizer:3000
+      PRESIDIO_LANGUAGE: ${PRESIDIO_LANGUAGE:-pt}
+      # Cofre de tokens persistente (fora da imagem, em reports/ — gitignored).
+      TOKEN_VAULT_BACKEND: ${TOKEN_VAULT_BACKEND:-file}
+      TOKEN_VAULT_PATH: /app/reports/token_vault.json
+      TOKEN_HMAC_SECRET: ${TOKEN_HMAC_SECRET:-troque-este-segredo-em-producao}
+      # Cliente das ferramentas MCP isoladas.
+      MCP_SERVER_URL: http://mcp-server:8090
+      MCP_CAPABILITY_SECRET: ${MCP_CAPABILITY_SECRET:-troque-este-segredo-de-capacidade}
+      MCP_CAPABILITY_TTL: ${MCP_CAPABILITY_TTL:-120}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8000:8000"
+    depends_on:
+      ollama:
+        condition: service_healthy
+      presidio-analyzer:
+        condition: service_healthy
+      presidio-anonymizer:
+        condition: service_healthy
+      mcp-server:
+        condition: service_healthy
+    <<: *app_hardening
+    volumes:
+      - ./data:/app/data:ro
+      - ./configs:/app/configs:ro
+      - ./reports:/app/reports:rw
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3).status==200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 25s
+    restart: unless-stopped
+    # rag-api participa das DUAS redes: fala com Presidio/Ollama (aurora) e é a
+    # ÚNICA porta de entrada para as ferramentas MCP (tools-internal).
+    networks: [aurora, tools-internal]
+
+volumes:
+  ollama-models:
+
+networks:
+  aurora:
+    driver: bridge
+  tools-internal:
+    # Rede sem gateway externo: contém o raio de explosão de uma ferramenta
+    # comprometida (Doc 04, §2 "isolamento de rede" e §10 "least privilege").
+    internal: true

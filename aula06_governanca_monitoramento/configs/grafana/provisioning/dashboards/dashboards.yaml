@@ -1,0 +1,15 @@
+# Provisionamento de dashboards (Aula 06). Carrega os JSONs montados em
+# /var/lib/grafana/dashboards (dashboard "Aurora LLMOps": qualidade, custo, segurança).
+apiVersion: 1
+
+providers:
+  - name: aurora-llmops
+    orgId: 1
+    folder: "Aurora LLMOps"
+    type: file
+    disableDeletion: false
+    editable: true
+    allowUiUpdates: true
+    options:
+      path: /var/lib/grafana/dashboards
+      foldersFromFilesStructure: false

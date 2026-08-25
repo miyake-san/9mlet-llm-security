@@ -1,0 +1,66 @@
+{"id": "pii-0001", "text": "O CPF informado foi 104.965.823-05.", "entities": ["BR_CPF"]}
+{"id": "pii-0002", "text": "O CPF informado foi 960.781.425-85.", "entities": ["BR_CPF"]}
+{"id": "pii-0003", "text": "O CPF informado foi 836.194.205-05.", "entities": ["BR_CPF"]}
+{"id": "pii-0004", "text": "O CPF informado foi 654.192.038-98.", "entities": ["BR_CPF"]}
+{"id": "pii-0005", "text": "A empresa tem CNPJ 15.842.037/0001-34.", "entities": ["BR_CNPJ"]}
+{"id": "pii-0006", "text": "A empresa tem CNPJ 16.942.853/0001-82.", "entities": ["BR_CNPJ"]}
+{"id": "pii-0007", "text": "A empresa tem CNPJ 31.058.279/0001-98.", "entities": ["BR_CNPJ"]}
+{"id": "pii-0008", "text": "A empresa tem CNPJ 16.435.298/0001-00.", "entities": ["BR_CNPJ"]}
+{"id": "pii-0009", "text": "Envie o comprovante para otto41@example.net.", "entities": ["EMAIL_ADDRESS"]}
+{"id": "pii-0010", "text": "Envie o comprovante para sophiesiqueira@example.org.", "entities": ["EMAIL_ADDRESS"]}
+{"id": "pii-0011", "text": "Envie o comprovante para maria-eduardagarcia@example.com.", "entities": ["EMAIL_ADDRESS"]}
+{"id": "pii-0012", "text": "Envie o comprovante para ayllavargas@example.org.", "entities": ["EMAIL_ADDRESS"]}
+{"id": "pii-0013", "text": "O endereço fica no CEP 05641395.", "entities": ["BR_CEP"]}
+{"id": "pii-0014", "text": "O endereço fica no CEP 76724238.", "entities": ["BR_CEP"]}
+{"id": "pii-0015", "text": "O endereço fica no CEP 96965-328.", "entities": ["BR_CEP"]}
+{"id": "pii-0016", "text": "O endereço fica no CEP 10122-691.", "entities": ["BR_CEP"]}
+{"id": "pii-0017", "text": "Meu telefone de contato é (92) 92824-1409.", "entities": ["PHONE_NUMBER"]}
+{"id": "pii-0018", "text": "Meu telefone de contato é (46) 95012-4657.", "entities": ["PHONE_NUMBER"]}
+{"id": "pii-0019", "text": "Meu telefone de contato é (28) 92679-9935.", "entities": ["PHONE_NUMBER"]}
+{"id": "pii-0020", "text": "Meu telefone de contato é (22) 97912-1520.", "entities": ["PHONE_NUMBER"]}
+{"id": "pii-0021", "text": "O cartão usado foi 6597848018451466.", "entities": ["CREDIT_CARD"]}
+{"id": "pii-0022", "text": "O cartão usado foi 4048281489325284.", "entities": ["CREDIT_CARD"]}
+{"id": "pii-0023", "text": "O cartão usado foi 213195701543036.", "entities": ["CREDIT_CARD"]}
+{"id": "pii-0024", "text": "O cartão usado foi 3517182278248964.", "entities": ["CREDIT_CARD"]}
+{"id": "pii-0025", "text": "RG: 13.195.323-3 foi apresentado no caixa.", "entities": ["BR_RG"]}
+{"id": "pii-0026", "text": "RG: 74.716.127-8 foi apresentado no caixa.", "entities": ["BR_RG"]}
+{"id": "pii-0027", "text": "RG: 35.833.765-8 foi apresentado no caixa.", "entities": ["BR_RG"]}
+{"id": "pii-0028", "text": "RG: 63.325.559-9 foi apresentado no caixa.", "entities": ["BR_RG"]}
+{"id": "pii-0029", "text": "Consulte a minha conta corrente nº 46463-0, por favor.", "entities": ["BR_ACCOUNT"]}
+{"id": "pii-0030", "text": "Consulte a minha conta corrente nº 30926-6, por favor.", "entities": ["BR_ACCOUNT"]}
+{"id": "pii-0031", "text": "Consulte a minha conta corrente nº 54597-4, por favor.", "entities": ["BR_ACCOUNT"]}
+{"id": "pii-0032", "text": "Consulte a minha conta corrente nº 30379-3, por favor.", "entities": ["BR_ACCOUNT"]}
+{"id": "pii-0033", "text": "O cliente Vitor Hugo Sá pediu a segunda via.", "entities": ["PERSON"]}
+{"id": "pii-0034", "text": "O cliente Dra. Gabriela Silva pediu a segunda via.", "entities": ["PERSON"]}
+{"id": "pii-0035", "text": "O cliente Murilo Rios pediu a segunda via.", "entities": ["PERSON"]}
+{"id": "pii-0036", "text": "O cliente Maria Fernanda Macedo pediu a segunda via.", "entities": ["PERSON"]}
+{"id": "pii-0037", "text": "Cliente Ana Liz da Conceição, CPF 871.960.243-03, telefone (54) 92674-2519, e-mail anthony-gabrielbarbosa@example.net.", "entities": ["PERSON", "BR_CPF", "PHONE_NUMBER", "EMAIL_ADDRESS"]}
+{"id": "pii-0038", "text": "Cliente Olívia da Cruz, CPF 105.849.237-32, telefone (59) 92584-6881, e-mail valentinacardoso@example.net.", "entities": ["PERSON", "BR_CPF", "PHONE_NUMBER", "EMAIL_ADDRESS"]}
+{"id": "pii-0039", "text": "Cliente Beatriz Araújo, CPF 763.089.214-40, telefone (55) 95333-1711, e-mail dsiqueira@example.net.", "entities": ["PERSON", "BR_CPF", "PHONE_NUMBER", "EMAIL_ADDRESS"]}
+{"id": "pii-0040", "text": "Cliente Pedro Miguel Novaes, CPF 651.798.304-00, telefone (69) 99785-3045, e-mail agathamartins@example.org.", "entities": ["PERSON", "BR_CPF", "PHONE_NUMBER", "EMAIL_ADDRESS"]}
+{"id": "pii-0041", "text": "Cliente Agatha Gomes, CPF 108.795.342-14, telefone (59) 92291-5803, e-mail isadoraaraujo@example.org.", "entities": ["PERSON", "BR_CPF", "PHONE_NUMBER", "EMAIL_ADDRESS"]}
+{"id": "pii-0042", "text": "Cliente Ana Liz Souza, CPF 479.358.602-38, telefone (91) 96925-4150, e-mail pedro-henrique09@example.net.", "entities": ["PERSON", "BR_CPF", "PHONE_NUMBER", "EMAIL_ADDRESS"]}
+{"id": "pii-0043", "text": "Cliente Isabela Guerra, CPF 508.436.172-17, telefone (19) 91750-4733, e-mail davi-miguelpeixoto@example.org.", "entities": ["PERSON", "BR_CPF", "PHONE_NUMBER", "EMAIL_ADDRESS"]}
+{"id": "pii-0044", "text": "Cliente Letícia Marques, CPF 130.478.295-60, telefone (48) 92307-4814, e-mail rhavi46@example.org.", "entities": ["PERSON", "BR_CPF", "PHONE_NUMBER", "EMAIL_ADDRESS"]}
+{"id": "pii-0045", "text": "Cliente Dr. Emanuel Macedo, CPF 510.349.762-06, telefone (23) 97227-5554, e-mail joao51@example.org.", "entities": ["PERSON", "BR_CPF", "PHONE_NUMBER", "EMAIL_ADDRESS"]}
+{"id": "pii-0046", "text": "Cliente Gustavo Henrique Silva, CPF 840.592.731-04, telefone (69) 96977-3664, e-mail caldeiraleonardo@example.com.", "entities": ["PERSON", "BR_CPF", "PHONE_NUMBER", "EMAIL_ADDRESS"]}
+{"id": "pii-0047", "text": "Cliente Julia Castro, CPF 534.782.091-88, telefone (58) 96820-4432, e-mail caio05@example.org.", "entities": ["PERSON", "BR_CPF", "PHONE_NUMBER", "EMAIL_ADDRESS"]}
+{"id": "pii-0048", "text": "Cliente Asafe das Neves, CPF 786.405.923-65, telefone (96) 95374-2169, e-mail freitasjuan@example.com.", "entities": ["PERSON", "BR_CPF", "PHONE_NUMBER", "EMAIL_ADDRESS"]}
+{"id": "pii-0049", "text": "Titular com conta corrente nº 89840-2 e CPF 509.176.842-49 no CEP 32260256.", "entities": ["BR_ACCOUNT", "BR_CPF", "BR_CEP"]}
+{"id": "pii-0050", "text": "Titular com conta corrente nº 80010-3 e CPF 342.650.981-42 no CEP 37543303.", "entities": ["BR_ACCOUNT", "BR_CPF", "BR_CEP"]}
+{"id": "pii-0051", "text": "Titular com conta corrente nº 31417-7 e CPF 654.902.731-43 no CEP 01429-401.", "entities": ["BR_ACCOUNT", "BR_CPF", "BR_CEP"]}
+{"id": "pii-0052", "text": "Titular com conta corrente nº 59735-4 e CPF 965.723.014-43 no CEP 06088-356.", "entities": ["BR_ACCOUNT", "BR_CPF", "BR_CEP"]}
+{"id": "pii-0053", "text": "Titular com conta corrente nº 93886-8 e CPF 158.702.439-04 no CEP 64823-662.", "entities": ["BR_ACCOUNT", "BR_CPF", "BR_CEP"]}
+{"id": "pii-0054", "text": "Titular com conta corrente nº 38785-5 e CPF 946.802.751-11 no CEP 77738-721.", "entities": ["BR_ACCOUNT", "BR_CPF", "BR_CEP"]}
+{"id": "pii-0055", "text": "Titular com conta corrente nº 17331-3 e CPF 485.012.769-01 no CEP 03791769.", "entities": ["BR_ACCOUNT", "BR_CPF", "BR_CEP"]}
+{"id": "pii-0056", "text": "Titular com conta corrente nº 14207-5 e CPF 367.915.084-93 no CEP 28708317.", "entities": ["BR_ACCOUNT", "BR_CPF", "BR_CEP"]}
+{"id": "pii-0057", "text": "Qual é o horário de funcionamento da agência central?", "entities": []}
+{"id": "pii-0058", "text": "Como faço para simular um empréstimo pessoal?", "entities": []}
+{"id": "pii-0059", "text": "Quais são as taxas do cartão de crédito Aurora Gold?", "entities": []}
+{"id": "pii-0060", "text": "Gostaria de saber sobre as opções de investimento.", "entities": []}
+{"id": "pii-0061", "text": "Como ativo as notificações de compras do meu cartão?", "entities": []}
+{"id": "pii-0062", "text": "Qual a taxa de rendimento da poupança Aurora?", "entities": []}
+{"id": "pii-0063", "text": "Como funciona o financiamento de veículos?", "entities": []}
+{"id": "pii-0064", "text": "Preciso de ajuda para emitir um boleto de pagamento.", "entities": []}
+{"id": "pii-0065", "text": "Quais documentos preciso para abrir uma conta?", "entities": []}
+{"id": "pii-0066", "text": "O aplicativo está fora do ar neste momento?", "entities": []}

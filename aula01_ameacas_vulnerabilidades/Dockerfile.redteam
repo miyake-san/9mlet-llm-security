@@ -1,0 +1,48 @@
+# syntax=docker/dockerfile:1.9
+###############################################################################
+# redteam-runner — Garak + PyRIT + harness de replay offline.
+# Imagem SEPARADA porque as dependências de red team são pesadas
+# (puxam torch/transformers) e não devem inflar a imagem do app.
+###############################################################################
+
+FROM ghcr.io/astral-sh/uv:0.5.11 AS uv
+FROM python:3.12.7-slim-bookworm AS runtime
+COPY --from=uv /uv /usr/local/bin/uv
+
+ENV UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy \
+    UV_PYTHON_DOWNLOADS=0 \
+    UV_PROJECT_ENVIRONMENT=/opt/venv \
+    PYTHONUNBUFFERED=1 \
+    PATH="/root/.cargo/bin:/opt/venv/bin:$PATH"
+
+# git/ca-certificates: algumas dependências transitivas de garak exigem.
+# rustup: o PyRIT compila o pacote nativo base2048 durante o build e precisa
+# de uma versão de Rust mais recente que a disponível no Bookworm.
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends git ca-certificates curl \
+ && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal \
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /work
+COPY pyproject.toml ./
+# main + grupo redteam (garak, pyrit); sem dev.
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --no-dev --group redteam --no-install-project
+
+COPY src/ ./src/
+COPY scripts/ ./scripts/
+COPY configs/ ./configs/
+COPY data/ ./data/
+
+# non-root + diretório de relatórios gravável
+RUN groupadd --gid 10002 redteam \
+ && useradd --uid 10002 --gid 10002 --no-create-home --shell /usr/sbin/nologin redteam \
+ && mkdir -p /work/reports && chown -R 10002:10002 /work
+USER 10002:10002
+
+ENV AURORA_API_URL=http://vulnerable-rag-api:8000 \
+    REPORT_DIR=/work/reports
+
+# Executa a campanha adversarial (replay offline + Garak/PyRIT quando disponíveis).
+CMD ["python", "scripts/run_redteam.py"]

@@ -1,0 +1,102 @@
+# ==========================================================================
+# docker-compose.yml — Lab da Aula 01 (vídeo 4)
+# Sobe tudo com um comando:  docker compose up -d
+# Campanha de red team (opcional/pesada):  docker compose --profile redteam run --rm redteam-runner
+#
+# Contêineres endurecidos (Doc 04, seção 8). Se sua plataforma não suportar
+# seccomp/read_only (ex.: alguns setups Windows), comente as linhas indicadas.
+# ==========================================================================
+name: aula01-ameacas
+
+services:
+  # --- LLM local, offline-first ------------------------------------------
+  ollama:
+    image: ollama/ollama:0.3.14
+    container_name: aula01-ollama
+    volumes:
+      - ollama-models:/root/.ollama
+    ports:
+      - "11434:11434"
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- Aurora Assist v0: API deliberadamente VULNERÁVEL (sem guardrails) --
+  vulnerable-rag-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: aurora-assist-vulnerable:aula01
+    container_name: aula01-api
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      LLM_BACKEND: ${LLM_BACKEND:-ollama}
+      OLLAMA_BASE_URL: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.1:8b}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8000:8000"
+    depends_on:
+      ollama:
+        condition: service_healthy
+    # ---- Hardening do contêiner (o app é inseguro por design; o host, não) ----
+    user: "10001:10001"
+    read_only: true                       # comente se sua plataforma reclamar
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+      - seccomp=./configs/seccomp.json    # comente para usar o perfil padrão
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    volumes:
+      - ./data:/app/data:ro               # datasets sintéticos (somente leitura)
+      - ./reports:/app/reports:rw
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3).status==200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- Runner de red team: Garak + PyRIT + replay (perfil opt-in) ---------
+  redteam-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile.redteam
+    image: aurora-redteam-runner:aula01
+    container_name: aula01-redteam
+    profiles: [redteam]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      AURORA_API_URL: http://vulnerable-rag-api:8000
+      OLLAMA_BASE_URL: http://ollama:11434
+      REPORT_DIR: /work/reports
+    depends_on:
+      vulnerable-rag-api:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    volumes:
+      - ./reports:/work/reports:rw
+      - ./data:/work/data:ro
+      - ./configs:/work/configs:ro
+    networks: [aurora]
+
+volumes:
+  ollama-models:
+
+networks:
+  aurora:
+    driver: bridge

@@ -1,0 +1,27 @@
+# ==========================================================================
+# tool_policy.yaml — Catálogo de capacidades das ferramentas MCP (Aula 03)
+#
+# Policy-as-code do isolamento de ferramentas (Doc 04, §10). Cada ferramenta
+# expõe o MENOR conjunto de escopos necessário. A defesa contra o *confused
+# deputy* (§9) é ESTRUTURAL: a ferramenta de saldo é `read_only` e NÃO existe
+# capacidade de transferir — não há como "confundir" o assistente a transferir,
+# pois a operação simplesmente não está no catálogo.
+#
+# Montado no mcp-server (imagem) e verificado a cada chamada por
+# `src.security.mcp_isolation.ToolAuthorizer`.
+# ==========================================================================
+tools:
+  consultar_saldo:
+    description: "Consulta SOMENTE LEITURA do saldo de uma conta (por token de conta)."
+    scopes: ["saldo:read"]
+    read_only: true
+
+  consultar_horario_agencia:
+    description: "Consulta pública do horário de funcionamento de uma agência."
+    scopes: ["agencia:read"]
+    read_only: true
+
+# ⚠️ Observação didática (Doc 04, §9): NÃO existe ferramenta `transferir`,
+# `atualizar_cadastro` ou similar. O princípio do menor privilégio elimina a
+# superfície de fraude na origem: uma injeção bem-sucedida não encontra
+# capacidade de escrita para abusar.

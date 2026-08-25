@@ -1,0 +1,50 @@
+# syntax=docker/dockerfile:1.9
+###############################################################################
+# redteam-ci — Garak + PyRIT + promptfoo + harness de campanha offline.
+# Imagem SEPARADA porque as dependências de red team são pesadas
+# (garak/pyrit puxam torch/transformers) e o promptfoo vem do npm.
+# Doc 04, seção 6-9: PyRIT (orquestração), Garak (varredura), promptfoo (CI).
+###############################################################################
+
+FROM ghcr.io/astral-sh/uv:0.5.11 AS uv
+FROM python:3.12.7-slim-bookworm AS runtime
+COPY --from=uv /uv /usr/local/bin/uv
+
+ENV UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy \
+    UV_PYTHON_DOWNLOADS=0 \
+    UV_PROJECT_ENVIRONMENT=/opt/venv \
+    PYTHONUNBUFFERED=1 \
+    PATH="/opt/venv/bin:$PATH"
+
+# git/ca-certificates: dependências transitivas de garak exigem.
+# nodejs/npm: promptfoo é distribuído como pacote npm (Doc 04, snippet 3).
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends git ca-certificates nodejs npm \
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /work
+COPY pyproject.toml ./
+# main + grupo redteam (garak, pyrit); sem dev.
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --no-dev --group redteam --no-install-project
+
+COPY app/ ./app/
+COPY src/ ./src/
+COPY scripts/ ./scripts/
+COPY configs/ ./configs/
+COPY data/ ./data/
+
+# non-root + diretório de relatórios gravável
+RUN groupadd --gid 10002 redteam \
+ && useradd --uid 10002 --gid 10002 --no-create-home --shell /usr/sbin/nologin redteam \
+ && mkdir -p /work/reports && chown -R 10002:10002 /work
+USER 10002:10002
+
+ENV TARGET_API_URL=http://target-api:8000 \
+    AUDIT_LOG_URL=http://audit-log:8091 \
+    REPORT_DIR=/work/reports \
+    PYTHONPATH=/work
+
+# Executa a campanha adversarial (replay offline + Garak/PyRIT/promptfoo quando disponíveis).
+CMD ["python", "scripts/run_redteam.py"]

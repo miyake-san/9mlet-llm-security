@@ -1,0 +1,23 @@
+# ==========================================================================
+# prometheus.yml — coleta das métricas SLI do Aurora Assist (Aula 06)
+# O app expõe /metrics no formato Prometheus (prometheus-client). Estas métricas
+# alimentam os dashboards de qualidade, custo e segurança no Grafana (Doc 04, §Obs.).
+# ==========================================================================
+global:
+  scrape_interval: 10s
+  evaluation_interval: 15s
+  external_labels:
+    lab: aula06-governanca-monitoramento
+
+scrape_configs:
+  - job_name: aurora-assist
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["app:8000"]
+        labels:
+          service: aurora-assist
+          env: lab
+
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]

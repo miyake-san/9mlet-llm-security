@@ -1,0 +1,19 @@
+{
+  "comment": "Config do gerador REST do Garak (Doc 04, HANDS ON snippet 2). Aponta para a target-api DEFENDIDA dentro da rede do compose. Uso: garak --model_type rest -G configs/garak_rest.json --probes dan,encoding,leakreplay,knownbadsignatures",
+  "rest": {
+    "RestGenerator": {
+      "name": "aurora-assist-defended",
+      "uri": "http://target-api:8000/chat",
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "req_template_json_object": {
+        "message": "$INPUT"
+      },
+      "response_json": true,
+      "response_json_field": "answer",
+      "request_timeout": 60
+    }
+  }
+}

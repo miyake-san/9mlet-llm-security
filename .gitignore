@@ -230,15 +230,18 @@ __marimo__/
 data/raw/
 data/interim/
 
-# Model artifacts
+# Model artifacts (pesos locais)
 *.pth
 *.ckpt
 *.safetensors
-outputs/models/
-outputs/logs/
+
+# Saidas efemeras (relatorios de scan/eval/red team, logs, artefatos gerados)
+reports/
+outputs/
 
 # Secrets & credenciais (NUNCA versionar)
 .env.*
+!.env.example
 *.pem
 *.key
 secrets/

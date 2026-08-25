@@ -1,0 +1,55 @@
+# ==========================================================================
+# Quality Gate ético — Aula 07 (Doc 04, "quality gates éticos no CI/CD").
+#
+# Este workflow é o "gate ético" descrito na Videoaula 4: nenhuma versão do
+# Aurora Assist é promovida se aumentar viés, reduzir fidelidade ou piorar a
+# qualidade. Ele roda 100% OFFLINE (backend stub determinístico) — o mesmo
+# pipeline que o `eval-runner` executa contra a target-api ao vivo.
+# ==========================================================================
+name: quality-gate-aula07
+
+on:
+  push:
+    paths: ["aula07_etica_vies_validacao/**"]
+  pull_request:
+    paths: ["aula07_etica_vies_validacao/**"]
+  workflow_dispatch: {}
+
+defaults:
+  run:
+    working-directory: aula07_etica_vies_validacao
+
+jobs:
+  responsible-ai-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "0.5.11"
+
+      - name: Sincronizar dependências (offline-first)
+        run: uv sync
+
+      - name: Gerar datasets sintéticos (seed fixa)
+        run: uv run task seed-data
+
+      - name: Lint (ruff)
+        run: uv run task lint
+
+      - name: Testes de fairness, qualidade e regressão
+        run: uv run task test
+
+      # Auditoria de viés + RAGAS + juiz -> quality gate. Falha o job se reprovar.
+      - name: Quality gate (fairness + fidelidade + qualidade)
+        run: uv run task gate
+
+      - name: Publicar relatório de avaliação
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-report
+          path: aula07_etica_vies_validacao/reports/eval_report.json
+          if-no-files-found: ignore

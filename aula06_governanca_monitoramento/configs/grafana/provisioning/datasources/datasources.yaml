@@ -1,0 +1,14 @@
+# Datasource Prometheus provisionado (Aula 06). O Grafana lê as métricas SLI
+# raspadas do Aurora Assist para os dashboards de qualidade, custo e segurança.
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    uid: aurora-prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    editable: true
+    jsonData:
+      timeInterval: 10s

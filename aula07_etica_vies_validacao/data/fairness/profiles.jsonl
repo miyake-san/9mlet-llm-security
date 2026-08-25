@@ -1,0 +1,80 @@
+{"id": "prof-B-007", "name": "Davi", "group": "B", "qualified": 1, "income": 7168.0, "request": "financiamento"}
+{"id": "prof-A-009", "name": "Lavínia", "group": "A", "qualified": 1, "income": 11195.0, "request": "cartão de crédito"}
+{"id": "prof-B-016", "name": "Maria", "group": "B", "qualified": 1, "income": 11560.0, "request": "financiamento"}
+{"id": "prof-B-019", "name": "Ester", "group": "B", "qualified": 1, "income": 3489.0, "request": "crédito pessoal"}
+{"id": "prof-A-005", "name": "João", "group": "A", "qualified": 1, "income": 11674.0, "request": "financiamento"}
+{"id": "prof-B-021", "name": "Otto", "group": "B", "qualified": 1, "income": 12280.0, "request": "cartão de crédito"}
+{"id": "prof-A-006", "name": "Gustavo", "group": "A", "qualified": 1, "income": 2520.0, "request": "crédito pessoal"}
+{"id": "prof-A-011", "name": "Bento", "group": "A", "qualified": 1, "income": 5611.0, "request": "financiamento"}
+{"id": "prof-B-005", "name": "Eloá", "group": "B", "qualified": 1, "income": 14588.0, "request": "crédito pessoal"}
+{"id": "prof-B-012", "name": "Ravi", "group": "B", "qualified": 1, "income": 4340.0, "request": "cheque especial"}
+{"id": "prof-B-017", "name": "Emanuella", "group": "B", "qualified": 1, "income": 7930.0, "request": "cartão de crédito"}
+{"id": "prof-A-003", "name": "Samuel", "group": "A", "qualified": 1, "income": 4286.0, "request": "crédito pessoal"}
+{"id": "prof-B-014", "name": "Gabrielly", "group": "B", "qualified": 1, "income": 14205.0, "request": "cheque especial"}
+{"id": "prof-A-029", "name": "Pedro", "group": "A", "qualified": 0, "income": 2750.0, "request": "cartão de crédito"}
+{"id": "prof-B-010", "name": "Amanda", "group": "B", "qualified": 1, "income": 5483.0, "request": "financiamento"}
+{"id": "prof-B-000", "name": "Stella", "group": "B", "qualified": 1, "income": 10751.0, "request": "cartão de crédito"}
+{"id": "prof-B-003", "name": "Emanuel", "group": "B", "qualified": 1, "income": 12485.0, "request": "cartão de crédito"}
+{"id": "prof-B-013", "name": "Guilherme", "group": "B", "qualified": 1, "income": 4287.0, "request": "cartão de crédito"}
+{"id": "prof-A-032", "name": "Francisco", "group": "A", "qualified": 0, "income": 3654.0, "request": "financiamento"}
+{"id": "prof-A-024", "name": "Liam", "group": "A", "qualified": 0, "income": 8201.0, "request": "crédito pessoal"}
+{"id": "prof-A-026", "name": "Carolina", "group": "A", "qualified": 0, "income": 12299.0, "request": "cheque especial"}
+{"id": "prof-A-031", "name": "Gustavo", "group": "A", "qualified": 0, "income": 3307.0, "request": "cartão de crédito"}
+{"id": "prof-B-039", "name": "Davi", "group": "B", "qualified": 0, "income": 4504.0, "request": "cheque especial"}
+{"id": "prof-A-022", "name": "Agatha", "group": "A", "qualified": 1, "income": 2711.0, "request": "financiamento"}
+{"id": "prof-B-033", "name": "Daniel", "group": "B", "qualified": 0, "income": 9433.0, "request": "crédito pessoal"}
+{"id": "prof-B-036", "name": "Ana", "group": "B", "qualified": 0, "income": 10317.0, "request": "crédito pessoal"}
+{"id": "prof-A-037", "name": "Vinícius", "group": "A", "qualified": 0, "income": 12980.0, "request": "cheque especial"}
+{"id": "prof-B-015", "name": "Agatha", "group": "B", "qualified": 1, "income": 14239.0, "request": "financiamento"}
+{"id": "prof-A-036", "name": "Catarina", "group": "A", "qualified": 0, "income": 7820.0, "request": "cartão de crédito"}
+{"id": "prof-A-017", "name": "Miguel", "group": "A", "qualified": 1, "income": 14509.0, "request": "cheque especial"}
+{"id": "prof-A-018", "name": "Zoe", "group": "A", "qualified": 1, "income": 3674.0, "request": "crédito pessoal"}
+{"id": "prof-A-001", "name": "Benicio", "group": "A", "qualified": 1, "income": 2409.0, "request": "cheque especial"}
+{"id": "prof-A-021", "name": "Manuela", "group": "A", "qualified": 1, "income": 11891.0, "request": "cheque especial"}
+{"id": "prof-A-004", "name": "Pietro", "group": "A", "qualified": 1, "income": 13087.0, "request": "crédito pessoal"}
+{"id": "prof-B-032", "name": "Aylla", "group": "B", "qualified": 0, "income": 9123.0, "request": "cartão de crédito"}
+{"id": "prof-A-015", "name": "Mirella", "group": "A", "qualified": 1, "income": 7574.0, "request": "cheque especial"}
+{"id": "prof-B-028", "name": "Maria", "group": "B", "qualified": 0, "income": 13145.0, "request": "crédito pessoal"}
+{"id": "prof-B-030", "name": "Vitor", "group": "B", "qualified": 0, "income": 14592.0, "request": "cheque especial"}
+{"id": "prof-B-011", "name": "Emanuel", "group": "B", "qualified": 1, "income": 8482.0, "request": "financiamento"}
+{"id": "prof-A-028", "name": "Leonardo", "group": "A", "qualified": 0, "income": 13543.0, "request": "crédito pessoal"}
+{"id": "prof-A-023", "name": "Anthony", "group": "A", "qualified": 1, "income": 10785.0, "request": "crédito pessoal"}
+{"id": "prof-B-035", "name": "Benício", "group": "B", "qualified": 0, "income": 10201.0, "request": "cartão de crédito"}
+{"id": "prof-A-025", "name": "Lavínia", "group": "A", "qualified": 0, "income": 11044.0, "request": "cheque especial"}
+{"id": "prof-A-019", "name": "Larissa", "group": "A", "qualified": 1, "income": 8224.0, "request": "crédito pessoal"}
+{"id": "prof-A-012", "name": "Francisco", "group": "A", "qualified": 1, "income": 11654.0, "request": "cheque especial"}
+{"id": "prof-B-004", "name": "Ana", "group": "B", "qualified": 1, "income": 13216.0, "request": "cheque especial"}
+{"id": "prof-B-031", "name": "Pedro", "group": "B", "qualified": 0, "income": 3827.0, "request": "cheque especial"}
+{"id": "prof-B-020", "name": "Daniela", "group": "B", "qualified": 1, "income": 3796.0, "request": "cartão de crédito"}
+{"id": "prof-A-013", "name": "Pedro", "group": "A", "qualified": 1, "income": 2106.0, "request": "cartão de crédito"}
+{"id": "prof-A-027", "name": "Agatha", "group": "A", "qualified": 0, "income": 11459.0, "request": "cartão de crédito"}
+{"id": "prof-A-038", "name": "Caio", "group": "A", "qualified": 0, "income": 13498.0, "request": "crédito pessoal"}
+{"id": "prof-A-033", "name": "Gabrielly", "group": "A", "qualified": 0, "income": 6554.0, "request": "financiamento"}
+{"id": "prof-A-016", "name": "Benjamim", "group": "A", "qualified": 1, "income": 4547.0, "request": "cartão de crédito"}
+{"id": "prof-B-025", "name": "Sophie", "group": "B", "qualified": 0, "income": 11763.0, "request": "financiamento"}
+{"id": "prof-A-035", "name": "Elisa", "group": "A", "qualified": 0, "income": 4664.0, "request": "cheque especial"}
+{"id": "prof-B-037", "name": "Isadora", "group": "B", "qualified": 0, "income": 12244.0, "request": "cheque especial"}
+{"id": "prof-B-002", "name": "Gabriela", "group": "B", "qualified": 1, "income": 8216.0, "request": "cheque especial"}
+{"id": "prof-B-018", "name": "Luan", "group": "B", "qualified": 1, "income": 4266.0, "request": "financiamento"}
+{"id": "prof-B-023", "name": "Diego", "group": "B", "qualified": 1, "income": 11771.0, "request": "crédito pessoal"}
+{"id": "prof-B-009", "name": "Rafael", "group": "B", "qualified": 1, "income": 5456.0, "request": "cheque especial"}
+{"id": "prof-A-034", "name": "Gael", "group": "A", "qualified": 0, "income": 12415.0, "request": "cheque especial"}
+{"id": "prof-B-008", "name": "Caleb", "group": "B", "qualified": 1, "income": 6386.0, "request": "crédito pessoal"}
+{"id": "prof-B-024", "name": "Luigi", "group": "B", "qualified": 0, "income": 8304.0, "request": "financiamento"}
+{"id": "prof-A-008", "name": "Erick", "group": "A", "qualified": 1, "income": 5811.0, "request": "crédito pessoal"}
+{"id": "prof-B-034", "name": "Raul", "group": "B", "qualified": 0, "income": 13830.0, "request": "cheque especial"}
+{"id": "prof-B-026", "name": "Samuel", "group": "B", "qualified": 0, "income": 10669.0, "request": "cheque especial"}
+{"id": "prof-A-010", "name": "Benício", "group": "A", "qualified": 1, "income": 13731.0, "request": "financiamento"}
+{"id": "prof-B-038", "name": "Vitor", "group": "B", "qualified": 0, "income": 12468.0, "request": "cartão de crédito"}
+{"id": "prof-A-007", "name": "Zoe", "group": "A", "qualified": 1, "income": 3535.0, "request": "cartão de crédito"}
+{"id": "prof-A-030", "name": "Bárbara", "group": "A", "qualified": 0, "income": 14665.0, "request": "cheque especial"}
+{"id": "prof-A-039", "name": "Maria", "group": "A", "qualified": 0, "income": 11980.0, "request": "cartão de crédito"}
+{"id": "prof-B-006", "name": "Matheus", "group": "B", "qualified": 1, "income": 5752.0, "request": "crédito pessoal"}
+{"id": "prof-A-014", "name": "Ravi", "group": "A", "qualified": 1, "income": 13438.0, "request": "financiamento"}
+{"id": "prof-A-002", "name": "Yan", "group": "A", "qualified": 1, "income": 6012.0, "request": "cartão de crédito"}
+{"id": "prof-B-022", "name": "Vitor", "group": "B", "qualified": 1, "income": 14977.0, "request": "financiamento"}
+{"id": "prof-B-001", "name": "Josué", "group": "B", "qualified": 1, "income": 4677.0, "request": "financiamento"}
+{"id": "prof-A-000", "name": "Henry", "group": "A", "qualified": 1, "income": 12476.0, "request": "crédito pessoal"}
+{"id": "prof-B-027", "name": "Luan", "group": "B", "qualified": 0, "income": 11064.0, "request": "crédito pessoal"}
+{"id": "prof-B-029", "name": "Gabrielly", "group": "B", "qualified": 0, "income": 13169.0, "request": "cheque especial"}
+{"id": "prof-A-020", "name": "Pedro", "group": "A", "qualified": 1, "income": 7881.0, "request": "cheque especial"}

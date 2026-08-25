@@ -1,0 +1,62 @@
+# ==========================================================================
+# treatment_policies.yaml — Registro de Operações de Tratamento / RoPA (Aula 05)
+#
+# Espinha dorsal documental da conformidade (Doc 04, §4 — LGPD art. 37 /
+# GDPR art. 30). Cada fluxo do Aurora Assist declara: finalidade, base legal,
+# categorias de dado, retenção e para onde os dados são transferidos. É a
+# primeira coisa que um auditor da ANPD solicitaria diante de um incidente.
+#
+# Consumido por src/security/treatment.py e pela rag-api (registro por request).
+# ==========================================================================
+
+# Base legal padrão de dados sensíveis exige art. 11 (não art. 7).
+operations:
+  consulta_saldo:
+    purpose: "Informar ao cliente autenticado o saldo da própria conta."
+    legal_basis: "execucao_contrato"        # LGPD art. 7, V
+    gdpr_basis: "contract"                    # GDPR art. 6(1)(b)
+    data_categories: ["conta", "saldo"]
+    special_category: false
+    retention_days: 1825                      # 5 anos (norma bancária)
+    transferred_to: "Azure Brazil South"
+    requires_consent: false
+
+  faq_produtos:
+    purpose: "Responder dúvidas gerais sobre produtos e serviços do banco."
+    legal_basis: "legitimo_interesse"         # LGPD art. 7, IX
+    gdpr_basis: "legitimate_interest"         # GDPR art. 6(1)(f)
+    data_categories: ["conteudo_da_pergunta"]
+    special_category: false
+    retention_days: 365
+    transferred_to: "Azure Brazil South"
+    requires_consent: false
+
+  treino_modelo:
+    purpose: "Usar conversas para ajustar/treinar o modelo do assistente."
+    legal_basis: "consentimento"              # LGPD art. 7, I — exige opt-in explícito
+    gdpr_basis: "consent"                     # GDPR art. 6(1)(a)
+    data_categories: ["conteudo_da_conversa"]
+    special_category: false
+    retention_days: 730
+    transferred_to: "Azure Brazil South"
+    requires_consent: true                    # SEM consentimento -> tratamento vedado
+
+  recomendacao_credito:
+    purpose: "Apoiar a análise de concessão de crédito (INFORMATIVO, não decisório)."
+    legal_basis: "consentimento"              # dado potencialmente sensível/sccore
+    gdpr_basis: "consent"
+    data_categories: ["perfil_financeiro", "score"]
+    special_category: false
+    retention_days: 1825
+    transferred_to: "Azure Brazil South"
+    requires_consent: true
+    # Decisão AUTOMATIZADA de crédito é RECUSADA pela rag-api (GDPR art. 22;
+    # Doc 04, §5,§7) — mantém supervisão humana e o sistema em risco LIMITADO.
+    human_in_the_loop_required: true
+
+# Categorias de finalidade que o consent-service reconhece (consentimento granular).
+consent_purposes:
+  - consulta_saldo
+  - faq_produtos
+  - treino_modelo
+  - recomendacao_credito

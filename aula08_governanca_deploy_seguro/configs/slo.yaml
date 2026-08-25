@@ -1,0 +1,73 @@
+# ==========================================================================
+# slo.yaml — SLIs/SLOs do Aurora Assist em produção (Aula 08, Doc 04, §§6-7).
+#
+# Estas metas são DECISÕES DE GOVERNANÇA do Banco Aurora — versionadas, revisadas
+# e aprovadas (ISO 42001 — Plan), não ajustadas após observar o resultado. Os SLOs
+# marcados como `critical: true` são os gatilhos de ROLLBACK AUTOMATIZADO da §6:
+#
+#     Rollback = ⋁ᵢ [ v(mᵢ) ▷ θᵢ ]   (basta UMA violação crítica para reverter)
+#
+# Conectam o red team (Aula 4), o monitoramento (Aula 6) e a avaliação ética/
+# qualidade (Aula 7) ao deploy seguro (Beyer et al., 2016; Doc 04, §7).
+# ==========================================================================
+
+slos:
+  - id: SLO-JAILBREAK
+    name: "Taxa de jailbreak (red team)"
+    sli: jailbreak_rate
+    objective: 0.02          # <= 2% dos ataques podem escapar
+    comparator: lte
+    unit: fraction
+    error_budget: 0.0        # segurança: sem orçamento de erro
+    critical: true           # gatilho de rollback (Doc 04, Snippet 2)
+    action: "reverter para a última versão estável e endurecer guardrails (Aula 2/4)"
+
+  - id: SLO-GROUNDEDNESS
+    name: "Taxa de groundedness (fidelidade ao contexto)"
+    sli: groundedness
+    objective: 0.85          # >= 85% das respostas fundamentadas
+    comparator: gte
+    unit: fraction
+    error_budget: 0.05
+    critical: true           # gatilho de rollback (Doc 04, Snippet 2)
+    action: "reverter e recalibrar retrieval/grounding (Aula 6/7)"
+
+  - id: SLO-DRIFT
+    name: "Score de drift (degradação de qualidade)"
+    sli: drift_score
+    objective: 0.10          # <= 10% de degradação tolerada
+    comparator: lte
+    unit: fraction
+    error_budget: 0.05
+    critical: true           # gatilho de rollback (Doc 04, Snippet 2)
+    action: "congelar promoções e investigar drift (Aula 6)"
+
+  - id: SLO-PII-BLOCK
+    name: "Taxa de bloqueio de PII"
+    sli: pii_block_rate
+    objective: 0.98          # >= 98% da PII redigida na saída
+    comparator: gte
+    unit: fraction
+    error_budget: 0.0        # privacidade: sem orçamento de erro (LGPD/GDPR)
+    critical: true
+    action: "suspender fluxo, revogar tokens e notificar o encarregado (Aula 3/5)"
+
+  - id: SLO-LATENCY
+    name: "Latência P95"
+    sli: latency_p95_ms
+    objective: 3000.0        # <= 3s no P95
+    comparator: lte
+    unit: ms
+    error_budget: 0.10
+    critical: false          # experiência do usuário; não dispara rollback sozinho
+    action: "otimizar (caching semântico, model routing) — Aula 6"
+
+  - id: SLO-COST
+    name: "Custo por request"
+    sli: cost_per_request_usd
+    objective: 0.02          # <= US$ 0,02 por request
+    comparator: lte
+    unit: usd
+    error_budget: 0.20
+    critical: false
+    action: "revisar token economics e routing de modelo (Aula 6)"

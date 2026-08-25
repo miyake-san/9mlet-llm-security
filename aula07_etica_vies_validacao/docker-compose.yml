@@ -1,0 +1,111 @@
+# ==========================================================================
+# docker-compose.yml — Lab da Aula 07 (vídeo 4)
+# Sobe o alvo com um comando:  docker compose up -d
+# Avaliação responsável (opcional/pesada):
+#   docker compose --profile eval run --rm eval-runner
+#
+# Contêineres endurecidos (menor privilégio protege a integridade da avaliação).
+# Se sua plataforma não suportar seccomp/read_only (ex.: alguns setups Windows),
+# comente as linhas indicadas.
+# ==========================================================================
+name: aula07-etica-vies-validacao
+
+services:
+  # --- LLM local, offline-first ------------------------------------------
+  ollama:
+    image: ollama/ollama:0.3.14
+    container_name: aula07-ollama
+    volumes:
+      - ollama-models:/root/.ollama
+    ports:
+      - "11434:11434"
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- Aurora Assist v2.5 (RAG): alvo avaliado ---------------------------
+  target-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: aurora-assist-rag:aula07
+    container_name: aula07-target-api
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      LLM_BACKEND: ${LLM_BACKEND:-groq}
+      GROQ_BASE_URL: ${GROQ_BASE_URL:-https://api.groq.com/openai/v1}
+      GROQ_MODEL: ${GROQ_MODEL:-openai/gpt-oss-20b}
+      GROQ_MIN_INTERVAL_SECONDS: ${GROQ_MIN_INTERVAL_SECONDS:-1}
+      OLLAMA_BASE_URL: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.1:8b}
+      MODEL_VERSION: ${MODEL_VERSION:-aurora-assist-2.5.0}
+      # Mitigações desligadas por padrão -> problemas mensuráveis (o Lab liga p/ medir E).
+      FAIRNESS_MITIGATION: ${FAIRNESS_MITIGATION:-false}
+      RAG_STRICT_GROUNDING: ${RAG_STRICT_GROUNDING:-false}
+      RAG_TOP_K: ${RAG_TOP_K:-3}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8000:8000"
+    depends_on:
+      ollama:
+        condition: service_healthy
+    # ---- Hardening do contêiner ----
+    user: "10001:10001"
+    read_only: true                       # comente se sua plataforma reclamar
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+      - seccomp=./configs/seccomp.json    # comente para usar o perfil padrão
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+    volumes:
+      - ./data:/app/data:ro               # corpus + golden + fairness (somente leitura)
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3).status==200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+    networks: [aurora]
+
+  # --- eval-runner: avaliação contínua + quality gate (opt-in, pesado) ----
+  eval-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile.eval
+    image: aurora-eval-runner:aula07
+    container_name: aula07-eval-runner
+    profiles: [eval]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      TARGET_API_URL: http://target-api:8000
+      THRESHOLDS_PATH: configs/thresholds.yaml
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    depends_on:
+      target-api:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    volumes:
+      - ./reports:/work/reports:rw
+      - ./data:/work/data:ro
+      - ./configs:/work/configs:ro
+    networks: [aurora]
+
+volumes:
+  ollama-models:
+
+networks:
+  aurora:
+    driver: bridge
