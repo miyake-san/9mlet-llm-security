@@ -58,7 +58,7 @@ flowchart LR
     RT[redteam-ci<br/>PyRIT · Garak · promptfoo<br/>profile: redteam] -->|ataques| API
     subgraph Stack["docker compose up"]
         API[target-api<br/>Aurora Assist DEFENDIDO<br/>guardrail imperfeito]
-        OLLAMA[(ollama<br/>llama3.1:8b — offline)]
+        OLLAMA[(ollama<br/>llama3.2:3b — offline)]
         AUDIT[audit-log<br/>hash chain + Merkle<br/>WORM lógico]
         OS[(opensearch<br/>SIEM — evidências)]
     end
@@ -91,7 +91,7 @@ cp .env.example .env            # Windows: copy .env.example .env
 uv run task up                  # docker compose up -d
 
 # 4) baixe o modelo local (uma vez)
-docker compose exec ollama ollama pull llama3.1:8b
+docker compose exec ollama ollama pull llama3.2:3b
 
 # 5) gere os datasets sintéticos completos (seed fixa)
 uv run task seed-data

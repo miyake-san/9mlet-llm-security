@@ -57,7 +57,7 @@ class OllamaBackend:
         timeout: float | None = None,
     ) -> None:
         self.base_url = (base_url or os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")).rstrip("/")
-        self.model = model or os.getenv("OLLAMA_MODEL", "llama3.1:8b")
+        self.model = model or os.getenv("OLLAMA_MODEL", "llama3.2:3b")
         self.timeout = timeout or float(os.getenv("LLM_TIMEOUT", "60"))
 
     def generate(self, prompt: str, system: str | None = None) -> str:

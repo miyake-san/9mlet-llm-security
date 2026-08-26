@@ -38,7 +38,7 @@ flowchart LR
     subgraph Stack["docker compose up"]
         GW[guardrail-gateway :8080<br/>entrada · behavior · Llama Guard · AACS · saída]
         RAG[rag-api :8000<br/>Aurora Assist backend]
-        OLLAMA[(ollama :11434<br/>llama3.1:8b + llama-guard3)]
+        OLLAMA[(ollama :11434<br/>llama3.2:3b + llama-guard3:1b)]
     end
     GW -->|entrada aprovada| RAG
     RAG --> OLLAMA

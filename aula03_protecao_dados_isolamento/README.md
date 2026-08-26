@@ -76,7 +76,7 @@ uv sync                              # runtime + dev (não baixa Presidio/torch)
 
 # 1) Suba a stack do Lab (vídeo 4)
 uv run task up                       # docker compose up -d
-docker compose exec ollama ollama pull llama3.1:8b
+docker compose exec ollama ollama pull llama3.2:3b
 
 # 2) Gere os datasets sintéticos (seed fixa = 42)
 uv run task seed-data

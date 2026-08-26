@@ -79,7 +79,7 @@ uv run task seed-data
 
 # 3) Stack do Lab (LLM local + Aurora Assist RAG)
 docker compose up -d
-docker compose exec ollama ollama pull llama3.1:8b
+docker compose exec ollama ollama pull llama3.2:3b
 
 # 4) Avaliação responsável + quality gate (offline, determinístico)
 uv run task eval     # relatório da versão ingênua (reprova o gate)

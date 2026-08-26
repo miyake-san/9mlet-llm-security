@@ -48,7 +48,7 @@ flowchart LR
       RAG -->|2. minimiza PII| PRES[presidio analyzer + anonymizer]
       RAG -->|3. registro de tratamento WORM| WORM[[hash chain art. 37]]
       RAG -->|4. RAG + purga| Q[(qdrant - vector store)]
-      RAG -->|LLM offline| OLL[ollama - llama3.1:8b]
+      RAG -->|LLM offline| OLL[ollama - llama3.2:3b]
     end
 
     PW[purge-worker] -->|polling DSR erasure| CS
@@ -83,7 +83,7 @@ uv sync
 
 # 2) Stack do Lab (vídeo 4)
 uv run task up                       # docker compose up -d
-docker compose exec ollama ollama pull llama3.1:8b
+docker compose exec ollama ollama pull llama3.2:3b
 
 # 3) Datasets sintéticos (seed fixa = 42)
 uv run task seed-data

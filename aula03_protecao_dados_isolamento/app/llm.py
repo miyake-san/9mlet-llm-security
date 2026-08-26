@@ -16,6 +16,8 @@ Referência:
 from __future__ import annotations
 
 import os
+import threading
+import time
 from typing import Protocol
 
 import httpx
@@ -62,7 +64,7 @@ class OllamaBackend:
         self.base_url = (
             base_url or os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
         ).rstrip("/")
-        self.model = model or os.getenv("OLLAMA_MODEL", "llama3.1:8b")
+        self.model = model or os.getenv("OLLAMA_MODEL", "llama3.2:3b")
         self.timeout = timeout or float(os.getenv("LLM_TIMEOUT", "60"))
 
     def generate(self, prompt: str, system: str | None = None) -> str:
@@ -78,6 +80,10 @@ class OllamaBackend:
             response = client.post(f"{self.base_url}/api/chat", json=payload)
             response.raise_for_status()
             return response.json()["message"]["content"].strip()
+
+
+_groq_lock = threading.Lock()
+_groq_last_call = 0.0
 
 
 class AzureBackend:
@@ -106,11 +112,46 @@ class AzureBackend:
         return (response.choices[0].message.content or "").strip()
 
 
+class GroqBackend:
+    """Backend Groq compatível com a interface de geração desta aula."""
+
+    def __init__(self) -> None:
+        api_key = os.getenv("GROQ_API_KEY")
+        if not api_key:
+            raise ValueError("GROQ_API_KEY é obrigatório quando LLM_BACKEND=groq.")
+        self.base_url = os.getenv("GROQ_BASE_URL", "https://api.groq.com/openai/v1").rstrip("/")
+        self.model = os.getenv("GROQ_MODEL", "openai/gpt-oss-20b")
+        self.timeout = float(os.getenv("LLM_TIMEOUT", "60"))
+        self._headers = {"Authorization": f"Bearer {api_key}"}
+        self._min_interval = max(0.0, float(os.getenv("GROQ_MIN_INTERVAL_SECONDS", "1")))
+
+    def generate(self, prompt: str, system: str | None = None) -> str:
+        global _groq_last_call
+        with _groq_lock:
+            delay = self._min_interval - (time.monotonic() - _groq_last_call)
+            if delay > 0:
+                time.sleep(delay)
+            _groq_last_call = time.monotonic()
+        response = httpx.post(
+            f"{self.base_url}/chat/completions",
+            headers=self._headers,
+            json={"model": self.model, "messages": [
+                {"role": "system", "content": system or _SYSTEM_PROMPT},
+                {"role": "user", "content": prompt},
+            ], "temperature": 0},
+            timeout=self.timeout,
+        )
+        response.raise_for_status()
+        return response.json()["choices"][0]["message"].get("content", "").strip()
+
+
 def get_backend(name: str | None = None) -> LLMBackend:
     """Fábrica de backend a partir de ``LLM_BACKEND`` (ou do argumento)."""
-    backend = (name or os.getenv("LLM_BACKEND", "ollama")).lower()
+    backend = (name or os.getenv("LLM_BACKEND", "groq")).lower()
     if backend == "stub":
         return StubBackend()
     if backend == "azure":
         return AzureBackend()
+    if backend == "groq":
+        return GroqBackend()
     return OllamaBackend()

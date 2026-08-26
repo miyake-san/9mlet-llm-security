@@ -39,7 +39,7 @@ flowchart LR
     Attacker([Red Team / Estudante]) -->|payloads| API
     subgraph Stack["docker compose up"]
         API[vulnerable-rag-api<br/>FastAPI · SEM guardrails]
-        OLLAMA[(ollama<br/>llama3.1:8b — offline)]
+        OLLAMA[(ollama<br/>llama3.2:3b — offline)]
         RT[redteam-runner<br/>Garak · PyRIT · replay<br/>profile: redteam]
     end
     API -->|s || u || d| OLLAMA
@@ -66,7 +66,7 @@ cp .env.example .env            # Windows: copy .env.example .env
 uv run task up                  # docker compose up -d
 
 # 4) baixe o modelo local (uma vez)
-docker compose exec ollama ollama pull llama3.1:8b
+docker compose exec ollama ollama pull llama3.2:3b
 
 # 5) gere os datasets sintéticos completos (seed fixa)
 uv run task seed-data

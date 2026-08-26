@@ -99,7 +99,7 @@ uv run task seed-data
 
 # 3) Stack do Lab (agente + LLM local + observabilidade + vector store)
 docker compose up -d
-docker compose exec ollama ollama pull llama3.1:8b
+docker compose exec ollama ollama pull llama3.2:3b
 
 # 4) Deploy gate DevSecOps (offline, determinístico)
 uv run task gate-naive   # versão INGÊNUA  -> BLOQUEIA (rollback por SLO)

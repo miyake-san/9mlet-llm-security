@@ -24,7 +24,7 @@ class Settings(BaseSettings):
 
     # Ollama
     ollama_base_url: str = "http://localhost:11434"
-    ollama_model: str = "llama3.1:8b"
+    ollama_model: str = "llama3.2:3b"
 
     # Groq (API compatível com OpenAI)
     groq_api_key: str | None = None

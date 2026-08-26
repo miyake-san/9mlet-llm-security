@@ -144,7 +144,7 @@ class GenAISpan:
 
     name: str
     gen_ai_system: str = "ollama"
-    gen_ai_request_model: str = "llama3.1:8b"
+    gen_ai_request_model: str = "llama3.2:3b"
     gen_ai_operation: GenAIOperation = GenAIOperation.CHAT
     input_tokens: int = 0
     output_tokens: int = 0

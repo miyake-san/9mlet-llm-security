@@ -213,43 +213,56 @@ class PresidioHttpMinimizer:
 
     name = "presidio-http"
 
-    def __init__(self, analyzer_url: str, anonymizer_url: str, timeout: float = 10.0) -> None:
+    def __init__(
+        self,
+        analyzer_url: str,
+        anonymizer_url: str,
+        timeout: float = 10.0,
+        fallback: Minimizer | None = None,
+    ) -> None:
         self.analyzer_url = analyzer_url.rstrip("/")
         self.anonymizer_url = anonymizer_url.rstrip("/")
         self._timeout = timeout
+        self._fallback = fallback
 
     def minimize(self, text: str) -> MinimizationResult:
         import httpx  # local: só é necessário no caminho HTTP
 
-        analyze_resp = httpx.post(
-            f"{self.analyzer_url}/analyze",
-            json={"text": text, "language": "pt"},
-            timeout=self._timeout,
-        )
-        analyze_resp.raise_for_status()
-        results = analyze_resp.json()
-        anon_resp = httpx.post(
-            f"{self.anonymizer_url}/anonymize",
-            json={
-                "text": text,
-                "analyzer_results": results,
-                "anonymizers": {"DEFAULT": {"type": "replace", "new_value": "[PII]"}},
-            },
-            timeout=self._timeout,
-        )
-        anon_resp.raise_for_status()
-        anonymized = anon_resp.json().get("text", text)
-        matches = [
-            PIIMatch(
-                entity=_coerce_entity(r.get("entity_type", "PERSON")),
-                text=text[r["start"] : r["end"]],
-                start=int(r["start"]),
-                end=int(r["end"]),
-                score=float(r.get("score", 0.85)),
+        try:
+            analyze_resp = httpx.post(
+                f"{self.analyzer_url}/analyze",
+                json={"text": text, "language": "pt"},
+                timeout=self._timeout,
             )
-            for r in results
-        ]
-        return MinimizationResult(text=anonymized, matches=matches)
+            analyze_resp.raise_for_status()
+            results = analyze_resp.json()
+            anon_resp = httpx.post(
+                f"{self.anonymizer_url}/anonymize",
+                json={
+                    "text": text,
+                    "analyzer_results": results,
+                    "anonymizers": {"DEFAULT": {"type": "replace", "new_value": "[PII]"}},
+                },
+                timeout=self._timeout,
+            )
+            anon_resp.raise_for_status()
+            anonymized = anon_resp.json().get("text", text)
+            matches = [
+                PIIMatch(
+                    entity=_coerce_entity(r.get("entity_type", "PERSON")),
+                    text=text[r["start"] : r["end"]],
+                    start=int(r["start"]),
+                    end=int(r["end"]),
+                    score=float(r.get("score", 0.85)),
+                )
+                for r in results
+            ]
+            return MinimizationResult(text=anonymized, matches=matches)
+        except (httpx.HTTPError, KeyError, TypeError, ValueError) as exc:
+            if self._fallback is None:
+                raise
+            logger.warning("Presidio falhou (%s) — usando minimizador determinístico.", exc)
+            return self._fallback.minimize(text)
 
 
 def _coerce_entity(entity_type: str) -> PIIEntity:

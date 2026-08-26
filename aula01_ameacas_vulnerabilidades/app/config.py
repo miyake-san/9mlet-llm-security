@@ -17,11 +17,11 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
     # Backend: "ollama" (offline, padrão) | "groq" | "azure" | "stub" (determinístico, sem rede)
-    llm_backend: str = "ollama"
+    llm_backend: str = "groq"
 
     # Ollama
     ollama_base_url: str = "http://localhost:11434"
-    ollama_model: str = "llama3.1:8b"
+    ollama_model: str = "llama3.2:3b"
 
     # Groq (API compatível com OpenAI; requer chave)
     groq_api_key: str | None = None

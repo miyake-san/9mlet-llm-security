@@ -20,7 +20,7 @@ ENV UV_COMPILE_BYTECODE=1 \
 # rustup: o PyRIT compila o pacote nativo base2048 durante o build e precisa
 # de uma versão de Rust mais recente que a disponível no Bookworm.
 RUN apt-get update \
- && apt-get install -y --no-install-recommends git ca-certificates curl \
+ && apt-get install -y --no-install-recommends git ca-certificates curl build-essential \
  && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal \
  && rm -rf /var/lib/apt/lists/*
 

@@ -15,12 +15,14 @@ ENV UV_COMPILE_BYTECODE=1 \
     UV_PYTHON_DOWNLOADS=0 \
     UV_PROJECT_ENVIRONMENT=/opt/venv \
     PYTHONUNBUFFERED=1 \
-    PATH="/opt/venv/bin:$PATH"
+    PATH="/root/.cargo/bin:/opt/venv/bin:$PATH"
 
 # git/ca-certificates: dependências transitivas de garak exigem.
+# rustup/build-essential: PyRIT compila base2048, que requer Rust e linker C.
 # nodejs/npm: promptfoo é distribuído como pacote npm (Doc 04, snippet 3).
 RUN apt-get update \
- && apt-get install -y --no-install-recommends git ca-certificates nodejs npm \
+ && apt-get install -y --no-install-recommends git ca-certificates curl build-essential nodejs npm \
+ && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /work

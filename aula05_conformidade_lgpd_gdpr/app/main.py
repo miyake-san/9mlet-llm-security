@@ -157,9 +157,12 @@ def get_minimizer() -> Minimizer:
     th = _thresholds()
     operators = th.get("pii", {}).get("operators", {})
     min_score = float(th.get("pii", {}).get("min_score", 0.5))
+    fallback = DeterministicMinimizer(min_score=min_score, operators=operators)
     if settings.presidio_analyzer_url and settings.presidio_anonymizer_url:
         presidio = PresidioHttpMinimizer(
-            settings.presidio_analyzer_url, settings.presidio_anonymizer_url
+            settings.presidio_analyzer_url,
+            settings.presidio_anonymizer_url,
+            fallback=fallback,
         )
         # Testa disponibilidade; se falhar, cai no detector determinístico.
         try:
@@ -167,7 +170,7 @@ def get_minimizer() -> Minimizer:
             return presidio
         except httpx.HTTPError:
             logger.warning("Presidio indisponível — usando detector BR determinístico.")
-    return DeterministicMinimizer(min_score=min_score, operators=operators)
+    return fallback
 
 
 @asynccontextmanager

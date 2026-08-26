@@ -19,23 +19,6 @@
 name: aula08-governanca-deploy-seguro
 
 services:
-  # --- LLM local, offline-first ------------------------------------------
-  ollama:
-    image: ollama/ollama:0.3.14
-    container_name: aula08-ollama
-    volumes:
-      - ollama-models:/root/.ollama
-    ports:
-      - "11434:11434"
-    healthcheck:
-      test: ["CMD", "ollama", "list"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 20s
-    restart: unless-stopped
-    networks: [aurora]
-
   # --- Postgres: backend de persistência do Langfuse ---------------------
   postgres:
     image: postgres:16.4-bookworm
@@ -145,8 +128,6 @@ services:
       GROQ_BASE_URL: ${GROQ_BASE_URL:-https://api.groq.com/openai/v1}
       GROQ_MODEL: ${GROQ_MODEL:-openai/gpt-oss-20b}
       GROQ_MIN_INTERVAL_SECONDS: ${GROQ_MIN_INTERVAL_SECONDS:-1}
-      OLLAMA_BASE_URL: http://ollama:11434
-      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.1:8b}
       MODEL_VERSION: ${MODEL_VERSION:-aurora-assist-3.0.0}
       AGENT_GUARDRAILS_ENABLED: ${AGENT_GUARDRAILS_ENABLED:-false}
       MCP_ENABLED: ${MCP_ENABLED:-true}
@@ -159,9 +140,6 @@ services:
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
     ports:
       - "8000:8000"
-    depends_on:
-      ollama:
-        condition: service_healthy
     # ---- Hardening do contêiner ----
     user: "10001:10001"
     read_only: true                       # comente se sua plataforma reclamar
@@ -181,7 +159,7 @@ services:
       retries: 5
       start_period: 20s
     restart: unless-stopped
-    networks: [aurora, internal]          # fala com ollama (aurora) e mcp-server (internal)
+    networks: [aurora, internal]          # fala com Groq (egress) e mcp-server (internal)
 
   # --- redteam-ci: deploy gate DevSecOps ao vivo (opt-in/pesado) ---------
   redteam-ci:
@@ -223,7 +201,6 @@ services:
     networks: [aurora]
 
 volumes:
-  ollama-models:
   postgres-data:
   qdrant-data:
 
